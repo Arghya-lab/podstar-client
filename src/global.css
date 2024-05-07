@@ -74,3 +74,47 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .nav-link {
+    @apply flex gap-4 border-2 border-transparent opacity-80 hover:opacity-100 hover:bg-muted rounded-lg text-lg py-1.5 px-4;
+  }
+  .active-nav-link {
+    @apply text-[#f44336] flex gap-4 border-2 border-transparent text-lg py-1.5 px-4 cursor-default;
+  }
+}
+
+.PodcastListLoader {
+  width: 12em;
+  height: 12em;
+}
+
+.PodcastListLoader path {
+  stroke: hsl(var(--muted));
+  stroke-width: 0.6px;
+  animation: dashArray 4s ease-in-out infinite, dashOffset 4s linear infinite;
+}
+
+@keyframes dashArray {
+  0% {
+    stroke-dasharray: 0 1 359 0;
+  }
+
+  50% {
+    stroke-dasharray: 0 359 1 0;
+  }
+
+  100% {
+    stroke-dasharray: 359 1 0 0;
+  }
+}
+
+@keyframes dashOffset {
+  0% {
+    stroke-dashoffset: 365;
+  }
+
+  100% {
+    stroke-dashoffset: 5;
+  }
+}
