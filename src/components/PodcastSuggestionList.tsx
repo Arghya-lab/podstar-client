@@ -1,9 +1,9 @@
-import PodcastSuggestionItem from "@/components/PodcastSuggestionItem";
+import PodcastSuggestionItem from "@/components/micro/PodcastSuggestionItem";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { TypographyLarge } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
 import { PodcastSuggestionType } from "@/@types/podcast";
-import PodcastListLoader from "./ui/PodcastListLoader";
+import MonaLisaLoadingAnimation from "@/components/ui/MonaLisaLoadingAnimation";
 
 function PodcastSuggestionList({
   podcasts,
@@ -20,7 +20,7 @@ function PodcastSuggestionList({
     return (
       <div className="flex-1 flex justify-center items-center">
         <div>
-          <PodcastListLoader />
+          <MonaLisaLoadingAnimation />
         </div>
       </div>
     );

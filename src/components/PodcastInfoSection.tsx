@@ -1,9 +1,13 @@
 import { format } from "date-fns";
 import { AudioLines } from "lucide-react";
-import { AspectRatio } from "./ui/aspect-ratio";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { TypographyH4, TypographyLead, TypographyMuted } from "./ui/typography";
-import { Button } from "./ui/button";
+import {
+  TypographyH4,
+  TypographyLead,
+  TypographyMuted,
+} from "@/components/ui/typography";
+import { Button } from "@/components/ui/button";
 import { ItunesType, PodcastType } from "@/@types/podcast";
 
 function PodcastInfoSection({

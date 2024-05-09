@@ -1,10 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
-import Root from "./routes/Root";
-import Error from "./routes/Error";
-import HomeRoute from "./routes/HomeRoute";
-import NotFound from "./routes/NotFound";
-import SearchRoute from "./routes/SearchRoute";
-import PodcastInfoRoute, { PodcastInfoLoader } from "./routes/PodcastInfoRoute";
+import Root from "@/routes/Root";
+import Error from "@/routes/Error";
+import HomeRoute from "@/routes/HomeRoute";
+import NotFound from "@/routes/NotFound";
+import SearchRoute from "@/routes/SearchRoute";
+import PodcastInfoRoute, { PodcastInfoLoader } from "@/routes/PodcastInfoRoute";
 
 const router = createBrowserRouter([
   {

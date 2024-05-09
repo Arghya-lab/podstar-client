@@ -1,6 +1,6 @@
 import { TypographyH1 } from "@/components/ui/typography";
 import { LayoutGrid } from "lucide-react";
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
 function MainHomeSection() {

@@ -1,8 +1,8 @@
 import { Outlet, useNavigation, Link } from "react-router-dom";
+import { AlignJustify } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import { TypographyH1 } from "@/components/ui/typography";
 import useWindowSize from "@/hooks/useWindowSize";
-
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -10,14 +10,19 @@ import {
   SheetHeader,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { AlignJustify } from "lucide-react";
+import Loader from "@/components/nano/Loader";
+import BottomPlayerBar from "@/components/BottomPlayerBar";
+import AudioPlayer from "@/components/AudioPlayer";
+import FullScreenPlayer from "@/components/FullScreenPlayer";
+import { usePlayerState } from "@/providers/playerState-provider";
 
 function Root() {
   const navigation = useNavigation();
   const { windowWidth } = useWindowSize();
+  const { playingCanceled } = usePlayerState();
 
   return (
-    <>
+    <div className="relative mx-auto">
       <section className="flex border-b items-center justify-between h-16">
         <div className="flex items-center">
           <Link to="/" className="px-8">
@@ -41,9 +46,16 @@ function Root() {
       </section>
       <div className="flex h-[calc(100dvh-4rem)] w-full">
         {windowWidth >= 1280 && <Navbar className="border-r-2 max-w-64" />}
-        {navigation.state === "loading" ? "loading" : <Outlet />}
+        {navigation.state === "loading" ? <Loader /> : <Outlet />}
       </div>
-    </>
+      <AudioPlayer />
+      {!playingCanceled && (
+        <>
+          <BottomPlayerBar />
+          <FullScreenPlayer />
+        </>
+      )}
+    </div>
   );
 }
 

@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { AudioLines } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { TypographyMuted, TypographyP } from "./ui/typography";
+import { TypographyMuted, TypographyP } from "@/components/ui/typography";
 import { PodcastSuggestionType } from "@/@types/podcast";
 
 function PodcastSuggestionItem({ data }: { data: PodcastSuggestionType }) {

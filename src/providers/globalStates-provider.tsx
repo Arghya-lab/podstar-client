@@ -9,13 +9,13 @@ const defaultGlobalStatesValue = {
   isPodcastCollapsibleOpen: false,
 };
 
-const globalStatesContext = createContext<globalStatesContextType>({
+const GlobalStatesContext = createContext<globalStatesContextType>({
   ...defaultGlobalStatesValue,
   dispatch: () => {},
 });
 
 // eslint-disable-next-line react-refresh/only-export-components
-export const useGlobalStates = () => useContext(globalStatesContext);
+export const useGlobalStates = () => useContext(GlobalStatesContext);
 
 export function GlobalStatesProvider({ children }: { children: ReactNode }) {
   const [states, dispatch] = useReducer(reducer, defaultGlobalStatesValue);
@@ -39,8 +39,8 @@ export function GlobalStatesProvider({ children }: { children: ReactNode }) {
   }
 
   return (
-    <globalStatesContext.Provider value={{ ...states, dispatch }}>
+    <GlobalStatesContext.Provider value={{ ...states, dispatch }}>
       {children}
-    </globalStatesContext.Provider>
+    </GlobalStatesContext.Provider>
   );
 }

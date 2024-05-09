@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { CaretSortIcon } from "@radix-ui/react-icons";
-import { ScrollArea } from "./ui/scroll-area";
-import { Button } from "./ui/button";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Button } from "@/components/ui/button";
 import useWindowSize from "@/hooks/useWindowSize";
 import {
   Collapsible,

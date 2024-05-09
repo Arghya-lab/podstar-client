@@ -33,6 +33,9 @@
     --ring: 240 10% 3.9%;
 
     --radius: 0.5rem;
+
+    --link: 0, 0%, 40%;
+    --link-hover: 0, 0%, 60%;
   }
 
   .dark {
@@ -63,6 +66,9 @@
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
     --ring: 240 4.9% 83.9%;
+
+    --link: 0, 0%, 60%;
+    --link-hover: 0, 0%, 40%;
   }
 }
 
@@ -84,13 +90,13 @@
   }
 }
 
-.PodcastListLoader {
+.monaLisaLoadingAnimation {
   width: 12em;
   height: 12em;
 }
 
-.PodcastListLoader path {
-  stroke: hsl(var(--muted));
+.monaLisaLoadingAnimation path {
+  stroke: hsl(var(--border));
   stroke-width: 0.6px;
   animation: dashArray 4s ease-in-out infinite, dashOffset 4s linear infinite;
 }

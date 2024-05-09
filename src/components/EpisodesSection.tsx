@@ -1,6 +1,6 @@
 import { FixedSizeList as List } from "react-window";
 import AutoSizer from "react-virtualized-auto-sizer";
-import EpisodeItem from "./EpisodeItem";
+import EpisodeItem from "@/components/micro/EpisodeItem";
 import { EpisodeType } from "@/@types/podcast";
 
 function EpisodesSection({
