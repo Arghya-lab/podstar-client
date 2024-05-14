@@ -1,7 +1,7 @@
 import { Podcast, Rss } from "lucide-react";
 import { TypographyMuted, TypographySmall } from "@/components/ui/typography";
 
-function NoPodcastSuggestionItem() {
+function PodcastSuggestionBg() {
   return (
     <div className="flex-1 flex flex-col items-center justify-center p-4 text-muted-foreground">
       <TypographyMuted>You Can Search For Anything...</TypographyMuted>
@@ -19,4 +19,4 @@ function NoPodcastSuggestionItem() {
   );
 }
 
-export default NoPodcastSuggestionItem;
+export default PodcastSuggestionBg;

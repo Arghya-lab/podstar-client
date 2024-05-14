@@ -5,7 +5,21 @@ import { VitePWA, VitePWAOptions } from "vite-plugin-pwa";
 
 const manifestForPlugin: Partial<VitePWAOptions> = {
   registerType: "prompt",
-  includeAssets: ["favicon.ico", "apple-touch-icon.png", "masked-icon.svg"],
+  includeAssets: [
+    "android-chrome-192x192.png",
+    "android-chrome-512x512.png",
+    "apple-touch-icon.png",
+    "favicon.ico",
+    "favicon.png",
+    "favicon.svg",
+    "mstile-70x70.png",
+    "mstile-144x144.png",
+    "mstile-150x150.png",
+    "mstile-310x150.png",
+    "mstile-310x310.png",
+    "safari-pinned-tab.svg",
+    "browserconfig.xml",
+  ],
   manifest: {
     name: "Podstar",
     short_name: "Podstar",
@@ -22,24 +36,22 @@ const manifestForPlugin: Partial<VitePWAOptions> = {
         type: "image/png",
       },
       {
-        src: "apple-touch-icon.png",
+        src: "/apple-touch-icon.png",
         sizes: "180x180",
         type: "image/png",
         purpose: "any",
       },
       {
-        src: "/android-chrome-192x192.png",
-        sizes: "192x192",
+        src: "/safari-pinned-tab.svg",
         type: "image/png",
         purpose: "maskable",
       },
     ],
-    theme_color: "#171717",
-    background_color: "#e8ebf2",
+    theme_color: "#ffffff",
+    background_color: "#ffffff",
     display: "standalone",
     start_url: "/",
     scope: "/",
-    orientation: "any",
   },
 };
 

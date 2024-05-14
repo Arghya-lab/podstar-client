@@ -39,8 +39,8 @@ function FullScreenPlayer() {
       }>
       <DrawerContent>
         <ScrollArea className="w-full h-[calc(100dvh-2.5rem)] px-10 md:px-16">
-          <div className="h-[calc(100dvh-2.5rem)] w-full py-14 md:py-20 flex flex-col justify-end">
-            <div className="flex flex-col md:flex-row items-center md:items-end gap-12 md:gap-8 xl:gap-12">
+          <div className="h-[calc(100dvh-2.5rem)] w-full py-20 flex flex-col justify-between md:justify-end">
+            <div className="flex flex-col md:flex-row items-center md:items-end gap-10 md:gap-8 xl:gap-12">
               <Avatar className="h-64 w-64 md:h-40 md:w-40 lg:h-56 lg:w-56 xl:h-64 xl:w-64 max-w-full aspect-square rounded-lg">
                 <AvatarImage src={epImgUrl} alt={episode?.title} />
                 <AvatarFallback className="rounded-lg">

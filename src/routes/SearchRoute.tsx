@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { PodcastSuggestionType } from "@/@types/podcast";
-import NoPodcastSuggestionItem from "@/components/NoPodcastSuggestionItem";
-import { fetchPodcastSuggestion, searchPodcastByUrl } from "@/api";
+import PodcastSuggestionBg from "@/components/PodcastSuggestionBg";
+import { fetchPodcastSuggestion, searchPodcastByUrl } from "@/api/podcast";
 import isValidUrl from "@/utils/isValidUrl";
 import PodcastSuggestionList from "@/components/PodcastSuggestionList";
+import MonaLisaLoadingAnimation from "@/components/ui/MonaLisaLoadingAnimation";
 
 let timeoutId: NodeJS.Timeout;
 
@@ -84,12 +85,18 @@ function SearchRoute() {
           placeholder="Search for Podcast or Enter Rss feed URL..."
         />
       </div>
-      {!isDataFetched && !loading && <NoPodcastSuggestionItem />}
+      {!isDataFetched && !loading && <PodcastSuggestionBg />}
+      {loading && (
+        <div className="flex-1 flex justify-center items-center">
+          <div>
+            <MonaLisaLoadingAnimation />
+          </div>
+        </div>
+      )}
       {isDataFetched && (
         <PodcastSuggestionList
           podcasts={podcasts}
           hasMore={hasMore}
-          loading={loading}
           fetchMoreData={fetchMoreData}
         />
       )}

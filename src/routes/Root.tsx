@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Outlet, useNavigation, Link } from "react-router-dom";
 import { AlignJustify } from "lucide-react";
 import Navbar from "@/components/Navbar";
@@ -15,18 +16,28 @@ import BottomPlayerBar from "@/components/BottomPlayerBar";
 import AudioPlayer from "@/components/AudioPlayer";
 import FullScreenPlayer from "@/components/FullScreenPlayer";
 import { usePlayerState } from "@/providers/playerState-provider";
+import Logo from "@/components/ui/logo";
+import useSetUser from "@/hooks/useSetUser";
 
 function Root() {
   const navigation = useNavigation();
   const { windowWidth } = useWindowSize();
   const { playingCanceled } = usePlayerState();
+  const setUser = useSetUser();
+
+  useEffect(() => {
+    (async () => {
+      await setUser();
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="relative mx-auto">
       <section className="flex border-b items-center justify-between h-16">
         <div className="flex items-center">
           <Link to="/" className="px-8">
-            <img className="w-10 h-10" src="/masked-icon.svg" />
+            <Logo />
           </Link>
           <TypographyH1 className="font-nunito">Podstar</TypographyH1>
         </div>

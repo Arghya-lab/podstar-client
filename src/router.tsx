@@ -4,7 +4,11 @@ import Error from "@/routes/Error";
 import HomeRoute from "@/routes/HomeRoute";
 import NotFound from "@/routes/NotFound";
 import SearchRoute from "@/routes/SearchRoute";
-import PodcastInfoRoute, { PodcastInfoLoader } from "@/routes/PodcastInfoRoute";
+import PodcastRoute, { PodcastRouteLoader } from "@/routes/PodcastRoute";
+import LoginRoute from "@/routes/LoginRoute";
+import VerifyEmailRoute from "@/routes/VerifyEmailRoute";
+import ResendVerifyEmailRoute from "@/routes/ResendVerifyEmailRoute";
+import RequireAuth from "./components/RequireAuth";
 
 const router = createBrowserRouter([
   {
@@ -22,16 +26,28 @@ const router = createBrowserRouter([
       },
       {
         path: "/podcast/:id",
-        element: <PodcastInfoRoute />,
-        loader: PodcastInfoLoader,
+        element: <PodcastRoute />,
+        loader: PodcastRouteLoader,
+      },
+      {
+        path: "/login",
+        element: <LoginRoute />,
+      },
+      {
+        path: "/verify-email",
+        element: <VerifyEmailRoute />,
+      },
+      {
+        path: "/resend-verify-email",
+        element: (
+          <RequireAuth>
+            <ResendVerifyEmailRoute />,
+          </RequireAuth>
+        ),
       },
       {
         path: "/you",
         element: <p>you</p>,
-      },
-      {
-        path: "/login",
-        element: <p>login</p>,
       },
       {
         path: "/podcasts",

@@ -44,7 +44,7 @@ function PodcastInfoSectionRapper({
     );
   }
 
-  return <ScrollArea className="lg:w-64 p-4">{children}</ScrollArea>;
+  return <ScrollArea className="lg:w-64 p-4 pr-2">{children}</ScrollArea>;
 }
 
 export default PodcastInfoSectionRapper;

@@ -7,13 +7,11 @@ function EpisodesSection({
   episodes,
   imgUrl,
 }: {
-  episodes?: EpisodeType[];
+  episodes: EpisodeType[];
   imgUrl?: string;
 }) {
-  if (!episodes) return null;
-
   return (
-    <section className="p-4 flex-1">
+    <section className="p-4 flex-1 flex flex-col">
       <AutoSizer>
         {({ height, width }) => (
           <List

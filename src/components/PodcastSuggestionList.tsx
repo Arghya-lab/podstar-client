@@ -3,29 +3,16 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { TypographyLarge } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
 import { PodcastSuggestionType } from "@/@types/podcast";
-import MonaLisaLoadingAnimation from "@/components/ui/MonaLisaLoadingAnimation";
 
 function PodcastSuggestionList({
   podcasts,
   hasMore,
-  loading,
   fetchMoreData,
 }: {
   podcasts: PodcastSuggestionType[];
   hasMore: boolean;
-  loading: boolean;
   fetchMoreData: () => unknown;
 }) {
-  if (loading) {
-    return (
-      <div className="flex-1 flex justify-center items-center">
-        <div>
-          <MonaLisaLoadingAnimation />
-        </div>
-      </div>
-    );
-  }
-
   return podcasts.length === 0 ? (
     <div className="flex-1 flex items-center justify-center">
       <TypographyLarge>

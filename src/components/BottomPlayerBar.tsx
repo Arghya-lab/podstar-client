@@ -15,7 +15,7 @@ import PlayTime from "@/components/nano/PlayTime";
 import PlayDuration from "@/components/nano/PlayDuration";
 
 function BottomPlayerBar() {
-  const { episode, epImgUrl, formattedDuration, dispatch } = usePlayerState();
+  const { episode, epImgUrl, dispatch } = usePlayerState();
   const { windowWidth } = useWindowSize();
 
   return (
@@ -59,7 +59,6 @@ function BottomPlayerBar() {
             <div className="flex items-center gap-2">
               <PlayTime />
               <AudioSeekBar />
-              <span className="text-xs">{formattedDuration}</span>
               <PlayDuration />
             </div>
           </div>
