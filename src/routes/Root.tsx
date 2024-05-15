@@ -17,17 +17,21 @@ import AudioPlayer from "@/components/AudioPlayer";
 import FullScreenPlayer from "@/components/FullScreenPlayer";
 import { usePlayerState } from "@/providers/playerState-provider";
 import Logo from "@/components/ui/logo";
-import useSetUser from "@/hooks/useSetUser";
+import { getUser } from "@/api/auth";
+import { useGlobalStates } from "@/providers/globalStates-provider";
 
 function Root() {
   const navigation = useNavigation();
   const { windowWidth } = useWindowSize();
   const { playingCanceled } = usePlayerState();
-  const setUser = useSetUser();
+  const { dispatch } = useGlobalStates();
 
   useEffect(() => {
     (async () => {
-      await setUser();
+      const res = await getUser();
+      if (res && res.user) {
+        dispatch({ type: "setUser", payload: res.user });
+      }
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -44,7 +48,9 @@ function Root() {
         {windowWidth < 1280 && (
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="outline" className="mr-8">
+              <Button
+                variant="link"
+                className="opacity-70 hover:opacity-100 mr-8">
                 <AlignJustify />
               </Button>
             </SheetTrigger>

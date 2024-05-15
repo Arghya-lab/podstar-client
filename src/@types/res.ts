@@ -1,10 +1,11 @@
 import { EpisodeType, ItunesType, PodcastType } from "./podcast";
 
 export interface UserType {
-  image: string | null;
-  isVerified: boolean;
-  userName: string;
   _id: string;
+  userName: string;
+  image: string | null;
+  email: string | null;
+  isVerified: boolean;
 }
 
 export interface getPodcastInfoType {

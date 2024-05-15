@@ -45,7 +45,7 @@ function VerifyEmailRoute() {
     <div className="flex-1 flex justify-center items-center p-4">
       <Card className="w-full max-w-sm h-min">
         <CardHeader>
-          <CardTitle className="text-center text-2xl">
+          <CardTitle className="text-center">
             Verify your email address
           </CardTitle>
           <CardDescription className="text-center">

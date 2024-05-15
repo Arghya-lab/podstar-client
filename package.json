@@ -30,6 +30,7 @@
     "fuse.js": "^7.0.0",
     "html-react-parser": "^5.1.10",
     "html-to-text": "^9.0.5",
+    "input-otp": "^1.2.4",
     "lucide-react": "^0.378.0",
     "mailchecker": "^6.0.4",
     "password-validator": "^5.3.0",

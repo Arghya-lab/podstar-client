@@ -28,19 +28,26 @@ function LoginRoute() {
         ) : (
           <SignupComponent successRedirect={from} />
         )}
-        <CardFooter>
-          <TypographySpan>
-            {formType === "login"
-              ? "Don’t have an account?"
-              : "Have an account?"}
-          </TypographySpan>
-          <Button
-            variant="link"
-            onClick={() =>
-              setFormType((pre) => (pre === "login" ? "signup" : "login"))
-            }>
-            {formType === "login" ? "Signup" : "Login"}
-          </Button>
+        <CardFooter className="flex-col items-start">
+          {formType === "login" && (
+            <Button variant="link" className="px-0" asChild>
+              <a href="/forgot-password">Forgot password</a>
+            </Button>
+          )}
+          <div>
+            <TypographySpan>
+              {formType === "login"
+                ? "Don’t have an account?"
+                : "Have an account?"}
+            </TypographySpan>
+            <Button
+              variant="link"
+              onClick={() =>
+                setFormType((pre) => (pre === "login" ? "signup" : "login"))
+              }>
+              {formType === "login" ? "Signup" : "Login"}
+            </Button>
+          </div>
         </CardFooter>
       </Card>
     </div>

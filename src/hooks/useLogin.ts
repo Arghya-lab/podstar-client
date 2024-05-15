@@ -1,11 +1,12 @@
 import axios, { isAxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
 import config from "@/config";
-import useSetUser from "@/hooks/useSetUser";
+import { getUser } from "@/api/auth";
+import { useGlobalStates } from "@/providers/globalStates-provider";
 
 export default function useLogin() {
   const navigate = useNavigate();
-  const setUser = useSetUser();
+  const { dispatch } = useGlobalStates();
 
   const handleLogin = async (
     email: string,
@@ -26,7 +27,10 @@ export default function useLogin() {
         );
 
       if (data.success) {
-        await setUser();
+        const res = await getUser();
+        if (res && res.user) {
+          dispatch({ type: "setUser", payload: res.user });
+        }
         navigate(redirectUrl);
       } else {
         console.log("error in login", data.message);

@@ -33,7 +33,7 @@ function ResendVerifyEmailRoute() {
     <div className="flex-1 flex justify-center items-center p-4">
       <Card className="w-full max-w-sm h-min text-center">
         <CardHeader>
-          <CardTitle className="text-2xl">Please verify your email</CardTitle>
+          <CardTitle>Please verify your email</CardTitle>
           <CardDescription>You almost there.</CardDescription>
         </CardHeader>
         <CardContent>

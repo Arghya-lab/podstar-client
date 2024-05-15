@@ -41,9 +41,7 @@ function LoginComponent({ successRedirect }: { successRedirect: string }) {
   return (
     <>
       <CardHeader>
-        <CardTitle className="text-2xl tracking-wider">
-          Login with Podstar
-        </CardTitle>
+        <CardTitle>Login with Podstar</CardTitle>
         <CardDescription>
           Continue with google or enter login credentials.
         </CardDescription>

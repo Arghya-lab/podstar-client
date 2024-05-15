@@ -31,6 +31,7 @@ function SignupComponent({ successRedirect }: { successRedirect: string }) {
       userName: "",
       email: "",
       password: "",
+      confirmPassword: "",
     },
   });
 
@@ -57,9 +58,7 @@ function SignupComponent({ successRedirect }: { successRedirect: string }) {
   return (
     <>
       <CardHeader>
-        <CardTitle className="text-2xl tracking-wider">
-          Signup with Podstar
-        </CardTitle>
+        <CardTitle>Signup with Podstar</CardTitle>
         <CardDescription>
           To signup fill the form with proper credentials.
         </CardDescription>
