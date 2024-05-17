@@ -5,6 +5,14 @@ import reducer from "@/providers/reducers/globalStateReducer";
 const defaultGlobalStatesValue = {
   isPodcastCollapsibleOpen: false,
   user: null,
+  subscriptions: null,
+  favorites: null,
+  settings: {
+    playbackSpeed: 1.0,
+    rewindIntervalSec: 10,
+    forwardIntervalSec: 10,
+  },
+  trending: null,
 };
 
 const GlobalStatesContext = createContext<globalStatesContextType>({

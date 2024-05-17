@@ -29,7 +29,13 @@ export default function useLogin() {
       if (data.success) {
         const res = await getUser();
         if (res && res.user) {
-          dispatch({ type: "setUser", payload: res.user });
+          dispatch({
+            type: "onUserLogin",
+            payload: {
+              user: res.user,
+              settings: res.settings,
+            },
+          });
         }
         navigate(redirectUrl);
       } else {

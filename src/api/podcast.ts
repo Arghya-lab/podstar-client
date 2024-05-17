@@ -75,3 +75,17 @@ export async function getPodcastInfo(id: string) {
     }
   }
 }
+
+export async function getTrending() {
+  try {
+    const { data }: { data: PodcastSuggestionType[] } = await axios.get(
+      `${config.apiBaseUrl}/podcast/trending`
+    );
+
+    return data;
+  } catch (error) {
+    if (isAxiosError(error)) {
+      console.error(error.message);
+    }
+  }
+}

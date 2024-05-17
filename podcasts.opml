@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<opml version="1.0">
+  <head>
+    <title>Google Podcasts Feeds</title>
+  </head>
+  <body>
+    <outline text="feeds">
+      <outline type="rss" text="On Purpose with Jay Shetty" xmlUrl="https://rss.art19.com/on-purpose-with-jay-shetty" />
+      <outline type="rss" text="The Overwhelmed Brain" xmlUrl="https://theoverwhelmedbrain.libsyn.com/rss" />
+      <outline type="rss" text="Hurdle" xmlUrl="https://anchor.fm/s/c154238/podcast/rss" />
+      <outline type="rss" text="Unlocking Us with Brené Brown" xmlUrl="https://feeds.megaphone.fm/unlocking-us" />
+      <outline type="rss" text="Happier with Gretchen Rubin" xmlUrl="https://feeds.megaphone.fm/happier" />
+      <outline type="rss" text="The One You Feed" xmlUrl="https://www.omnycontent.com/d/playlist/e73c998e-6e60-432f-8610-ae210140c5b1/1d49cbad-dffb-4b8f-bea4-aea001380113/2f40a9d9-0fdd-49fb-8444-aea001380134/podcast.rss" />
+      <outline type="rss" text="Good Life Project" xmlUrl="https://feeds.acast.com/public/shows/61de0665cc27c20014ea15cf" />
+      <outline type="rss" text="The Habit Coach with Ashdin Doctor" xmlUrl="https://www.omnycontent.com/d/playlist/e0dce4b3-2eb8-48cb-822c-af1d00e03e20/7dbb4b1f-5aa0-480d-96ef-af4f00c6b5f7/f98e9677-a6e2-423b-80b1-af4f00c6b621/podcast.rss" />
+      <outline type="rss" text="The Tony Robbins Podcast" xmlUrl="https://tonyrobbins.libsyn.com/rss" />
+      <outline type="rss" text="Tiny Leaps, Big Changes" xmlUrl="https://anchor.fm/s/bd0fbb4/podcast/rss" />
+      <outline type="rss" text="The School of Greatness" xmlUrl="https://feeds.simplecast.com/AAvup9Zz" />
+      <outline type="rss" text="Motivation with Brendon Burchard" xmlUrl="https://brendonburchard.libsyn.com/rss" />
+      <outline type="rss" text="Finshots Daily" xmlUrl="https://anchor.fm/s/37a76020/podcast/rss" />
+      <outline type="rss" text="Woice with Warikoo Podcast" xmlUrl="https://www.omnycontent.com/d/playlist/4bb33704-615b-4054-aae9-ace500fd4197/c6e18bb1-650c-43bf-a852-ace600482419/9bac1d6d-3f3a-428a-b8d1-ace600491b2b/podcast.rss" />
+      <outline type="rss" text="The Ranveer Show हिंदी" xmlUrl="https://feeds.simplecast.com/Qj87SOvG" />
+      <outline type="rss" text="Dear HBR:" xmlUrl="http://feeds.harvardbusiness.org/harvardbusiness/dear-hbr" />
+      <outline type="rss" text="Business Wars Daily" xmlUrl="https://rss.art19.com/business-wars-daily" />
+      <outline type="rss" text="The Stacking Benjamins Show" xmlUrl="https://feeds.megaphone.fm/stacking-benjamins" />
+      <outline type="rss" text="Wall Street Unplugged - What's Really Moving These Markets" xmlUrl="http://sainvestorradio.stansberry.libsynpro.com/" />
+      <outline type="rss" text="The Ramsey Show" xmlUrl="https://feeds.megaphone.fm/RM4031649020" />
+      <outline type="rss" text="The Intelligent Investing Podcast" xmlUrl="https://intelligentinvesting.podbean.com/feed/" />
+      <outline type="rss" text="The Canadian Investor" xmlUrl="https://www.omnycontent.com/d/playlist/d75d2ff4-a4dd-4a19-bcb1-ad35013dfc83/33a9e70f-55b1-4f79-86a9-ad35013e9672/4ad0a8bc-f5dd-4c63-b6af-ad35013e9680/podcast.rss" />
+      <outline type="rss" text="The Investing for Beginners Podcast - Your Path to Financial Freedom" xmlUrl="https://einvestingforbeginners.com/feed/podcast" />
+      <outline type="rss" text="The Richard Nicholls Mental Health Podcast" xmlUrl="https://richardnicholls.net/feed.xml" />
+      <outline type="rss" text="The Project Life Mastery Podcast" xmlUrl="https://feeds.redcircle.com/d0e6f3f0-de0e-4270-980f-c1fd67121652" />
+      <outline type="rss" text="The Tim Ferriss Show" xmlUrl="https://rss.art19.com/tim-ferriss-show" />
+      <outline type="rss" text="What Happened Today in History" xmlUrl="https://anchor.fm/s/540bca30/podcast/rss" />
+      <outline type="rss" text="TED Talks Daily" xmlUrl="https://open.firstory.me/rss/user/cjzdxzf7vbzvj075872kanoib" />
+      <outline type="rss" text="Speak Better English with Harry" xmlUrl="https://feeds.buzzsprout.com/442543.rss" />
+      <outline type="rss" text="The Mindset Mentor" xmlUrl="https://feeds.simplecast.com/rpKQEwel" />
+    </outline>
+  </body>
+</opml>

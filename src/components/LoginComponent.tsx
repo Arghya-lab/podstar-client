@@ -18,7 +18,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input, PasswordInput } from "@/components/ui/input";
-import Google from "@/components/ui/Google";
+import Google from "@/components/ui/google-icon";
 import { TypographyMuted } from "@/components/ui/typography";
 import config from "@/config";
 import useLogin from "@/hooks/useLogin";

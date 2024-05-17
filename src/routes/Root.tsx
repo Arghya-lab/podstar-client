@@ -16,7 +16,7 @@ import BottomPlayerBar from "@/components/BottomPlayerBar";
 import AudioPlayer from "@/components/AudioPlayer";
 import FullScreenPlayer from "@/components/FullScreenPlayer";
 import { usePlayerState } from "@/providers/playerState-provider";
-import Logo from "@/components/ui/logo";
+import Logo from "@/components/ui/appLogo-icon";
 import { getUser } from "@/api/auth";
 import { useGlobalStates } from "@/providers/globalStates-provider";
 
@@ -30,7 +30,13 @@ function Root() {
     (async () => {
       const res = await getUser();
       if (res && res.user) {
-        dispatch({ type: "setUser", payload: res.user });
+        dispatch({
+          type: "onUserLogin",
+          payload: {
+            user: res.user,
+            settings: res.settings,
+          },
+        });
       }
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps

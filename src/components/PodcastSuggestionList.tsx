@@ -1,6 +1,5 @@
 import PodcastSuggestionItem from "@/components/micro/PodcastSuggestionItem";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { TypographyLarge } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
 import { PodcastSuggestionType } from "@/@types/podcast";
 
@@ -13,13 +12,7 @@ function PodcastSuggestionList({
   hasMore: boolean;
   fetchMoreData: () => unknown;
 }) {
-  return podcasts.length === 0 ? (
-    <div className="flex-1 flex items-center justify-center">
-      <TypographyLarge>
-        Podcast suggestion not found for your query.
-      </TypographyLarge>
-    </div>
-  ) : (
+  return podcasts.length === 0 ? null : (
     <ScrollArea className="flex-1 pt-4">
       {podcasts.map((podcast) => (
         <PodcastSuggestionItem key={podcast._id} data={podcast} />

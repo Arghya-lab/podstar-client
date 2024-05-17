@@ -8,7 +8,7 @@ export async function getUser() {
       data,
     }: {
       data: UserResType;
-    } = await axios.get(`${config.apiBaseUrl}/auth/user`, {
+    } = await axios.get(`${config.apiBaseUrl}/user`, {
       withCredentials: true,
     });
 

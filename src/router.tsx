@@ -7,12 +7,14 @@ import SearchRoute from "@/routes/SearchRoute";
 import PodcastRoute, { PodcastRouteLoader } from "@/routes/PodcastRoute";
 import LoginRoute from "@/routes/LoginRoute";
 import VerifyEmailRoute from "@/routes/VerifyEmailRoute";
-import ForgotPasswordRoute from "./routes/ForgotPasswordRoute";
+import ForgotPasswordRoute from "@/routes/ForgotPasswordRoute";
 import ResendVerifyEmailRoute from "@/routes/ResendVerifyEmailRoute";
 import RequireAuth from "@/components/RequireAuth";
 import UserRoute from "@/routes/UserRoute";
 import AccountRoute from "@/routes/AccountRoute";
-import ChangePasswordRoute from "./routes/ChangePasswordRoute";
+import ChangePasswordRoute from "@/routes/ChangePasswordRoute";
+import ImportExportRoute from "@/routes/ImportExportRoute";
+import PlayerSettingsRoute from "@/routes/PlayerSettingsRoute";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +34,10 @@ const router = createBrowserRouter([
         path: "/podcast/:id",
         element: <PodcastRoute />,
         loader: PodcastRouteLoader,
+      },
+      {
+        path: "/trending",
+        element: <p>trending</p>,
       },
       {
         path: "/login",
@@ -71,11 +77,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/import-export",
-        element: <p>import-export</p>,
+        element: <ImportExportRoute />,
       },
       {
         path: "/player-setting",
-        element: <p>player-setting</p>,
+        element: <PlayerSettingsRoute />,
       },
       {
         path: "/subscriptions",

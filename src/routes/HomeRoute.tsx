@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import MainHomeSection from "@/components/MainHomeSection";
+import UserSubscriptionsHomeSection from "@/components/UserSubscriptionsHomeSection";
 import { useGlobalStates } from "@/providers/globalStates-provider";
+import TrendingHomeSection from "@/components/TrendingHomeSection";
 
 function HomeRoute() {
   const { user } = useGlobalStates();
@@ -21,7 +22,8 @@ function HomeRoute() {
           </Button>
         )}
       </div>
-      <MainHomeSection />
+      <TrendingHomeSection />
+      {user && <UserSubscriptionsHomeSection />}
     </main>
   );
 }

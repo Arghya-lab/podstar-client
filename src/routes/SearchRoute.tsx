@@ -6,6 +6,7 @@ import { fetchPodcastSuggestion, searchPodcastByUrl } from "@/api/podcast";
 import isValidUrl from "@/utils/isValidUrl";
 import PodcastSuggestionList from "@/components/PodcastSuggestionList";
 import MonaLisaLoadingAnimation from "@/components/ui/MonaLisaLoadingAnimation";
+import { TypographyLarge } from "@/components/ui/typography";
 
 let timeoutId: NodeJS.Timeout;
 
@@ -91,6 +92,13 @@ function SearchRoute() {
           <div>
             <MonaLisaLoadingAnimation />
           </div>
+        </div>
+      )}
+      {isDataFetched && !loading && podcasts.length === 0 && (
+        <div className="flex-1 flex items-center justify-center">
+          <TypographyLarge>
+            Podcast suggestion not found for your query.
+          </TypographyLarge>
         </div>
       )}
       {isDataFetched && (

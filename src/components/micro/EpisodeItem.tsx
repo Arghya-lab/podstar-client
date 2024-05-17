@@ -6,6 +6,7 @@ import formatDate from "@/utils/formateDate";
 import { Separator } from "@/components/ui/separator";
 import { EpisodeType } from "@/@types/podcast";
 import { usePlayerState } from "@/providers/playerState-provider";
+import formatEpisodeDuration from "@/utils/formatEpisodeDuration";
 
 function EpisodeItem({
   episode,
@@ -45,19 +46,17 @@ function EpisodeItem({
             <AudioLines size={24} />
           </AvatarFallback>
         </Avatar>
-        <div className="pl-4">
-          <TypographyLarge className="-mt-2 text-pretty line-clamp-1">
+        <div className="pl-4 flex flex-col justify-between">
+          <TypographyLarge className="-mt-2 text-pretty line-clamp-2">
             {episode.title}
           </TypographyLarge>
-          <TypographyMuted className="line-clamp-2 opacity-65 text-pretty">
+          {/* <TypographyMuted className="line-clamp-2 opacity-65 text-pretty">
             {episode.description}
-          </TypographyMuted>
+          </TypographyMuted> */}
           <TypographyMuted className="text-muted-foreground">
             {formatDate(episode.pubDate)}
             &nbsp;&nbsp;&#8226;&nbsp;&nbsp;
-            {`${Math.floor(episode.itunesDuration / 3600)}hr ${Math.floor(
-              (episode.itunesDuration % 3600) / 60
-            )}min`}
+            {formatEpisodeDuration(episode.itunesDuration)}
           </TypographyMuted>
         </div>
       </div>
