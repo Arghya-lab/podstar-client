@@ -33,6 +33,18 @@ export default function reducer(
         trending: action.payload,
       };
       break;
+    case "updateSettings":
+      return {
+        ...states,
+        settings: action.payload,
+      };
+      break;
+    case "updateFavorite":
+      return {
+        ...states,
+        favorites: action.payload,
+      };
+      break;
 
     default:
       return states;

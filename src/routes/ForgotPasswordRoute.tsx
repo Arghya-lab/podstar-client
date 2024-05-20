@@ -1,7 +1,7 @@
+import ForgotPasswordEmailForm from "@/components/authComponents/ForgotPasswordEmailForm";
+import ForgotPasswordOtpTokenForm from "@/components/authComponents/ForgotPasswordOtpTokenForm";
+import ForgotPasswordSetPasswordForm from "@/components/authComponents/ForgotPasswordSetPasswordForm";
 import { useState } from "react";
-import ForgotPasswordEmailForm from "@/components/ForgotPasswordEmailForm";
-import ForgotPasswordSetPasswordForm from "@/components/ForgotPasswordSetPasswordForm";
-import ForgotPasswordOtpTokenForm from "@/components/ForgotPasswordOtpTokenForm";
 
 export interface StateType {
   email: string;
@@ -17,7 +17,7 @@ function ForgotPasswordRoute() {
   });
 
   return (
-    <div className="flex-1 flex justify-center items-center">
+    <main className="flex-1 flex justify-center items-center">
       {state.email === "" && <ForgotPasswordEmailForm setState={setState} />}
       {state.email && state.newPassword === "" && (
         <ForgotPasswordSetPasswordForm setState={setState} state={state} />
@@ -25,7 +25,7 @@ function ForgotPasswordRoute() {
       {state.email && state.newPassword && (
         <ForgotPasswordOtpTokenForm state={state} />
       )}
-    </div>
+    </main>
   );
 }
 

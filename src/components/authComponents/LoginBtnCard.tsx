@@ -20,14 +20,12 @@ function LoginBtnCard() {
 
   return (
     <div className="p-4 w-full flex justify-center">
-      <Card className="w-full h-min max-w-md">
+      <Card className="w-full h-min flex flex-col xs:flex-row justify-between">
         <CardHeader>
           <CardTitle>You are not Login</CardTitle>
-          <CardDescription>
-            Please login to continue@/components
-          </CardDescription>
+          <CardDescription>Please login to Podstar</CardDescription>
         </CardHeader>
-        <CardFooter className="flex justify-center pt-6">
+        <CardFooter className="xs:pt-6">
           <Button onClick={handleBtnClick}>Login</Button>
         </CardFooter>
       </Card>

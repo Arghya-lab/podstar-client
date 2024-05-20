@@ -42,15 +42,15 @@ function SliderScale({
         <div className="flex justify-between absolute top-0 left-0 right-0 z-40">
           {Array(totalLargePointer)
             .fill(0)
-            .map(() => (
-              <div className="h-3 w-[1px] bg-foreground" />
+            .map((_, id) => (
+              <div key={id} className="h-3 w-[1px] bg-foreground" />
             ))}
         </div>
         <div className="flex justify-between absolute top-0 left-0 right-0">
           {Array((totalLargePointer - 1) * perLargeScaleSmallPointerCount + 1)
             .fill(0)
-            .map(() => (
-              <div className="h-1.5 w-[1px] bg-muted-foreground" />
+            .map((_, id) => (
+              <div key={id} className="h-1.5 w-[1px] bg-muted-foreground" />
             ))}
         </div>
       </div>
@@ -61,8 +61,8 @@ function SliderScale({
               .toFixed(scaleValueToFixed)
               .toString()
               .padStart(scaleNumberMaxLength, "0")
-          ).map((val) => (
-            <TypographySmall>{val}</TypographySmall>
+          ).map((val, id) => (
+            <TypographySmall key={id}>{val}</TypographySmall>
           ))}
         </div>
       )}

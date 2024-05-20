@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 import { AudioLines } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { TypographyMuted, TypographyP } from "@/components/ui/typography";
-import { PodcastSuggestionType } from "@/@types/podcast";
+import { PodcastItemType } from "@/@types/podcast";
 
-function PodcastSuggestionItem({ data }: { data: PodcastSuggestionType }) {
+function PodcastSuggestionItem({ data }: { data: PodcastItemType }) {
   return (
     <Link
       to={`/podcast/${data._id}`}

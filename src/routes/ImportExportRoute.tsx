@@ -7,7 +7,7 @@ import {
 
 function ImportExportRoute() {
   return (
-    <div className="w-fill p-4 flex-1">
+    <main className="w-fill p-4 flex-1">
       <TypographyH3>Import & Export</TypographyH3>
       <div className="p-4 w-full">
         <Button
@@ -27,7 +27,7 @@ function ImportExportRoute() {
           </TypographyMuted>
         </Button>
       </div>
-    </div>
+    </main>
   );
 }
 

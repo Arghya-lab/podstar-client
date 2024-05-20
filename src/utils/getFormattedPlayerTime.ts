@@ -18,7 +18,9 @@ export default function getFormattedPlayerTime(
       Math.floor(maxTill / (60 * 60)) > 0
         ? Math.floor(maxTill / (60 * 60)).toString().length
         : 0;
+
     const formattedCurrentHr = formatNum(currentHr, hrCharCount, true);
+
     return (
       (formattedCurrentHr ? formattedCurrentHr + ":" : "") +
       formattedCurrentMin +

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import config from "@/config";
 import { getUser } from "@/api/auth";
 import { useGlobalStates } from "@/providers/globalStates-provider";
+import { ApiResponseType } from "@/@types/res";
 
 export default function useLogin() {
   const navigate = useNavigate();
@@ -14,17 +15,16 @@ export default function useLogin() {
     redirectUrl: string
   ) => {
     try {
-      const { data }: { data: { success: boolean; message: string } } =
-        await axios.post(
-          `${config.apiBaseUrl}/auth/login`,
-          {
-            email,
-            password,
-          },
-          {
-            withCredentials: true,
-          }
-        );
+      const { data }: { data: ApiResponseType } = await axios.post(
+        `${config.apiBaseUrl}/auth/login`,
+        {
+          email,
+          password,
+        },
+        {
+          withCredentials: true,
+        }
+      );
 
       if (data.success) {
         const res = await getUser();

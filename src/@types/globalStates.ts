@@ -1,14 +1,14 @@
 import { Dispatch } from "react";
-import { FavoriteType, SettingsType, UserType } from "@/@types/res";
-import { PodcastSuggestionType } from "@/@types/podcast";
+import { SettingsType, UserType } from "@/@types/res";
+import { FavoritePodcastType, PodcastItemType } from "@/@types/podcast";
 
 export interface globalStatesType {
   isPodcastCollapsibleOpen: boolean;
   user: UserType | null;
-  subscriptions: null | PodcastSuggestionType[]; //Update type
-  favorites: null | FavoriteType[];
+  subscriptions: null | PodcastItemType[]; //Update type
+  favorites: null | FavoritePodcastType[];
   settings: SettingsType;
-  trending: null | PodcastSuggestionType[];
+  trending: null | PodcastItemType[];
 }
 
 export interface globalStatesContextType extends globalStatesType {
@@ -28,15 +28,25 @@ export interface togglePodcastCollapsibleType {
 }
 export interface updateSubscriptionsType {
   type: "updateSubscriptions";
-  payload: PodcastSuggestionType[];
+  payload: PodcastItemType[];
 }
 export interface updateTrendingType {
   type: "updateTrending";
-  payload: PodcastSuggestionType[];
+  payload: PodcastItemType[];
+}
+export interface updateSettingsType {
+  type: "updateSettings";
+  payload: SettingsType;
+}
+export interface updateFavoriteType {
+  type: "updateFavorite";
+  payload: FavoritePodcastType[];
 }
 
 export type globalStatesActionType =
   | onUserLoginType
   | togglePodcastCollapsibleType
   | updateSubscriptionsType
-  | updateTrendingType;
+  | updateTrendingType
+  | updateSettingsType
+  | updateFavoriteType;

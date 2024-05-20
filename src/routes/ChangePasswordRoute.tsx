@@ -22,6 +22,7 @@ import { Input, PasswordInput } from "@/components/ui/input";
 import config from "@/config";
 import { updatePasswordFormSchema } from "@/schemas";
 import { useNavigate } from "react-router-dom";
+import { ApiResponseType } from "@/@types/res";
 
 function ChangePasswordRoute() {
   const navigate = useNavigate();
@@ -37,17 +38,16 @@ function ChangePasswordRoute() {
 
   async function onSubmit(values: z.infer<typeof updatePasswordFormSchema>) {
     try {
-      const { data }: { data: { success: boolean; message: string } } =
-        await axios.post(
-          `${config.apiBaseUrl}/auth/change-password`,
-          {
-            password: values.password,
-            newPassword: values.newPassword,
-          },
-          {
-            withCredentials: true,
-          }
-        );
+      const { data }: { data: ApiResponseType } = await axios.post(
+        `${config.apiBaseUrl}/auth/change-password`,
+        {
+          password: values.password,
+          newPassword: values.newPassword,
+        },
+        {
+          withCredentials: true,
+        }
+      );
       if (data.success) {
         console.log(data.message);
         navigate("/");
@@ -62,7 +62,7 @@ function ChangePasswordRoute() {
   }
 
   return (
-    <div className="flex-1 flex justify-center items-center">
+    <main className="flex-1 flex justify-center items-center">
       <Card className="w-full max-w-md m-4">
         <CardHeader>
           <CardTitle>Signup with Podstar</CardTitle>
@@ -132,7 +132,7 @@ function ChangePasswordRoute() {
           </Form>
         </CardContent>
       </Card>
-    </div>
+    </main>
   );
 }
 

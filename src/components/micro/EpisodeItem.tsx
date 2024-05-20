@@ -1,7 +1,7 @@
 import { CSSProperties } from "react";
 import { AudioLines } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { TypographyLarge, TypographyMuted } from "@/components/ui/typography";
+import { TypographyH4, TypographyMuted } from "@/components/ui/typography";
 import formatDate from "@/utils/formateDate";
 import { Separator } from "@/components/ui/separator";
 import { EpisodeType } from "@/@types/podcast";
@@ -11,10 +11,12 @@ import formatEpisodeDuration from "@/utils/formatEpisodeDuration";
 function EpisodeItem({
   episode,
   imgUrl,
+  podcastId,
   style,
 }: {
   episode: EpisodeType;
   imgUrl?: string;
+  podcastId: string;
   style?: CSSProperties;
 }) {
   const { episode: playingEp, playing, dispatch } = usePlayerState();
@@ -26,7 +28,7 @@ function EpisodeItem({
       onClick={() => {
         dispatch({
           type: "setNewEpisode",
-          payload: { episode, epImgUrl: imgUrl },
+          payload: { episode, epImgUrl: imgUrl, podcastId },
         });
       }}>
       <div className="p-2 flex hover:bg-muted rounded-lg cursor-pointer">
@@ -47,9 +49,9 @@ function EpisodeItem({
           </AvatarFallback>
         </Avatar>
         <div className="pl-4 flex flex-col justify-between">
-          <TypographyLarge className="-mt-2 text-pretty line-clamp-2">
+          <TypographyH4 className="text-base font-semibold text-pretty line-clamp-2">
             {episode.title}
-          </TypographyLarge>
+          </TypographyH4>
           {/* <TypographyMuted className="line-clamp-2 opacity-65 text-pretty">
             {episode.description}
           </TypographyMuted> */}
@@ -60,7 +62,7 @@ function EpisodeItem({
           </TypographyMuted>
         </div>
       </div>
-      <Separator className="w-[calc(100%-1rem)] mx-2 mb-4" />
+      <Separator className="w-[calc(100%-1rem)] mx-2" />
     </div>
   );
 }

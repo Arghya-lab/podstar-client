@@ -3,9 +3,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Card, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { TypographySpan } from "@/components/ui/typography";
-import LoginComponent from "@/components/LoginComponent";
-import SignupComponent from "@/components/SignupComponent";
 import { useGlobalStates } from "@/providers/globalStates-provider";
+import LoginComponent from "@/components/authComponents/LoginComponent";
+import SignupComponent from "@/components/authComponents/SignupComponent";
 
 function LoginRoute() {
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ function LoginRoute() {
   const [formType, setFormType] = useState<"login" | "signup">("login");
 
   return (
-    <div className="flex-1 flex justify-center items-center">
+    <main className="flex-1 flex justify-center items-center">
       <Card className="w-full max-w-md m-4">
         {formType === "login" ? (
           <LoginComponent successRedirect={from} />
@@ -50,7 +50,7 @@ function LoginRoute() {
           </div>
         </CardFooter>
       </Card>
-    </div>
+    </main>
   );
 }
 

@@ -23,6 +23,7 @@ import { Button } from "@/components/ui/button";
 import { passwordForgotPasswordSchema } from "@/schemas";
 import config from "@/config";
 import { StateType } from "@/routes/ForgotPasswordRoute";
+import { ApiResponseType } from "@/@types/res";
 
 function ForgotPasswordSetPasswordForm({
   state,
@@ -46,10 +47,7 @@ function ForgotPasswordSetPasswordForm({
       const {
         data,
       }: {
-        data: {
-          success: boolean;
-          message: string;
-        };
+        data: ApiResponseType;
       } = await axios.get(
         `${config.apiBaseUrl}/auth/send-forgotPassword-token`,
         {

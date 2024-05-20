@@ -1,14 +1,14 @@
 import PodcastSuggestionItem from "@/components/micro/PodcastSuggestionItem";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
-import { PodcastSuggestionType } from "@/@types/podcast";
+import { PodcastItemType } from "@/@types/podcast";
 
 function PodcastSuggestionList({
   podcasts,
   hasMore,
   fetchMoreData,
 }: {
-  podcasts: PodcastSuggestionType[];
+  podcasts: PodcastItemType[];
   hasMore: boolean;
   fetchMoreData: () => unknown;
 }) {

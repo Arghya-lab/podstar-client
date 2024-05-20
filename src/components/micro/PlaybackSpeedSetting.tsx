@@ -11,9 +11,11 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
+import useSettings from "@/hooks/useSettings";
 
 function PlaybackSpeedSetting() {
-  const [value, setValue] = useState(1);
+  const { settings, updatePlaybackSpeed } = useSettings();
+  const [value, setValue] = useState(settings.playbackSpeed);
 
   return (
     <div className="pl-4 py-2 max-w-2xl flex justify-between items-center">
@@ -24,7 +26,7 @@ function PlaybackSpeedSetting() {
       <Drawer>
         <DrawerTrigger asChild>
           <Button variant="ghost" className="gap-1">
-            {value.toFixed(1)}x
+            {settings.playbackSpeed.toFixed(1)}x
             <ChevronRight size={16} />
           </Button>
         </DrawerTrigger>
@@ -38,13 +40,6 @@ function PlaybackSpeedSetting() {
                 {value.toFixed(1)}x
               </TypographyH3>
               <SliderScale
-                // minValue={5}
-                // maxValue={90}
-                // totalLargePointer={18}
-                // perLargeScaleSmallPointerCount={1}
-                // scaleValueToFixed={0}
-                // scaleNumberMaxLength={2}
-                // hideScaleNumbers
                 minValue={0.5}
                 maxValue={4.0}
                 totalLargePointer={8}
@@ -54,7 +49,7 @@ function PlaybackSpeedSetting() {
               />
             </div>
             <DrawerFooter>
-              <Button>Submit</Button>
+              <Button onClick={() => updatePlaybackSpeed(value)}>Submit</Button>
             </DrawerFooter>
           </div>
         </DrawerContent>

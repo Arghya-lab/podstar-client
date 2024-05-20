@@ -9,6 +9,7 @@ export interface timeStampType {
 }
 
 export interface PlayerStateType {
+  podcastId: string | null;
   episode: EpisodeType | null;
   epImgUrl: string;
   playing: boolean;
@@ -39,7 +40,11 @@ export interface PlayerStateContextType extends PlayerStateType {
 
 interface setNewEpisodeType {
   type: "setNewEpisode";
-  payload: { episode: EpisodeType; epImgUrl?: string };
+  payload: {
+    episode: EpisodeType;
+    epImgUrl?: string;
+    podcastId: string;
+  };
 }
 interface togglePlayPauseType {
   type: "togglePlayPause";

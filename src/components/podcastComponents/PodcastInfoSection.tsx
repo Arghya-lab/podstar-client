@@ -1,4 +1,5 @@
 import { format } from "date-fns";
+import htmlParser from "html-react-parser";
 import { AudioLines } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -6,16 +7,11 @@ import {
   TypographyH4,
   TypographyLead,
   TypographyMuted,
+  TypographyP,
 } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
-import {
-  ItunesType,
-  PodcastSuggestionType,
-  PodcastType,
-} from "@/@types/podcast";
-import axios, { isAxiosError } from "axios";
-import config from "@/config";
-import { useGlobalStates } from "@/providers/globalStates-provider";
+import { ItunesType, PodcastType } from "@/@types/podcast";
+import useSubscription from "@/hooks/useSubscriptions";
 
 function PodcastInfoSection({
   id,
@@ -26,36 +22,13 @@ function PodcastInfoSection({
   podcast: PodcastType;
   itunes?: ItunesType;
 }) {
-  const { dispatch, subscriptions } = useGlobalStates();
+  const { subscriptions, handleSubscribe } = useSubscription();
+
   if (!podcast && !itunes) return null;
-
-  const handleSubscribe = async () => {
-    try {
-      const {
-        data,
-      }: {
-        data: { success: boolean; subscriptions: PodcastSuggestionType[] };
-      } = await axios.post(
-        `${config.apiBaseUrl}/user/toggle-subscribe/${id}`,
-        {},
-        {
-          withCredentials: true,
-        }
-      );
-
-      if (data.success) {
-        dispatch({ type: "updateSubscriptions", payload: data.subscriptions });
-      }
-    } catch (error) {
-      if (isAxiosError(error)) {
-        console.error(error.message);
-      }
-    }
-  };
 
   return (
     <>
-      <div className="max-h-64 max-w-64 mx-auto">
+      <div className="max-h-64 max-w-64 mx-auto pt-8">
         <AspectRatio ratio={1 / 1} className="bg-muted rounded-lg">
           <Avatar className="h-full w-full rounded-lg">
             <AvatarImage src={podcast.image?.url} alt={podcast.image?.title} />
@@ -65,34 +38,34 @@ function PodcastInfoSection({
           </Avatar>
         </AspectRatio>
       </div>
-      <section className="w-full lg:w-auto max-w-lg mx-auto">
-        <TypographyH4 className="text-lg pt-4 text-pretty">
+      <section className="w-full pt-16 lg:w-auto max-w-lg mx-auto">
+        <TypographyH4 className="text-2xl text-pretty">
           {podcast.title || itunes?.trackName}
         </TypographyH4>
-        <TypographyLead className="text-base">
+        <TypographyLead className="text-base text-pretty">
           {podcast.itunesOwner?.name}
         </TypographyLead>
         <Button
-          className="mt-4 mb-6 w-full max-w-64"
+          className="mt-4 mb-16"
           variant={
             subscriptions && subscriptions.map((data) => data._id).includes(id)
               ? "secondary"
               : "default"
           }
-          onClick={handleSubscribe}>
+          onClick={() => handleSubscribe(id)}>
           {subscriptions && subscriptions.map((data) => data._id).includes(id)
             ? "Unsubscribe"
             : "Subscribe"}
         </Button>
         {(itunes?.genres && itunes?.genres?.length > 0) ||
         podcast.itunesCategory ? (
-          <TypographyMuted className="pb-2">
+          <TypographyP className="pb-3 text-base">
             Category : {itunes?.genres?.join(", ") || podcast!.itunesCategory}
-          </TypographyMuted>
+          </TypographyP>
         ) : null}
-        <TypographyMuted className="font-medium pb-8">
-          {podcast.description || podcast.itunesSummary}
-        </TypographyMuted>
+        <article className="font-medium pb-8">
+          {htmlParser(podcast.description)}
+        </article>
 
         {itunes?.releaseDate && (
           <TypographyMuted className="pb-2">

@@ -17,6 +17,7 @@ import { Button } from "@/components/ui/button";
 import { passwordForgotEmailSchema } from "@/schemas";
 import config from "@/config";
 import { StateType } from "@/routes/ForgotPasswordRoute";
+import { ApiResponseType } from "@/@types/res";
 
 function ForgotPasswordEmailForm({
   setState,
@@ -28,18 +29,14 @@ function ForgotPasswordEmailForm({
       const {
         data,
       }: {
-        data: {
-          success: boolean;
-          isEligible: boolean;
-          message: string;
-        };
+        data: ApiResponseType;
       } = await axios.get(
         `${config.apiBaseUrl}/auth/validateEmail-for-forgotPassword`,
         {
           params: { email: values.email },
         }
       );
-      if (data.isEligible) {
+      if (data.success) {
         setState((prev) => ({ ...prev, email: values.email }));
       } else {
         console.error(data.message);

@@ -9,7 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { VerifyEmailResType } from "@/@types/res";
+import { ApiResponseType } from "@/@types/res";
 
 function VerifyEmailRoute() {
   const [searchParams] = useSearchParams();
@@ -19,17 +19,15 @@ function VerifyEmailRoute() {
 
   const handleVerifyBtnClick = async () => {
     try {
-      const { data }: { data: VerifyEmailResType } = await axios.get(
-        `${config.apiBaseUrl}/auth/verify-email`,
-        {
+      const { data }: { data: ApiResponseType<{ isTokenExpired: boolean }> } =
+        await axios.get(`${config.apiBaseUrl}/auth/verify-email`, {
           params: {
             token,
           },
           withCredentials: true,
-        }
-      );
+        });
 
-      if (data.isTokenExpired === false) {
+      if (data.data.isTokenExpired === false) {
         navigate("/login");
       } else {
         navigate("/resend-verify-email");
@@ -42,7 +40,7 @@ function VerifyEmailRoute() {
   };
 
   return (
-    <div className="flex-1 flex justify-center items-center p-4">
+    <main className="flex-1 flex justify-center items-center p-4">
       <Card className="w-full max-w-sm h-min">
         <CardHeader>
           <CardTitle className="text-center">
@@ -58,7 +56,7 @@ function VerifyEmailRoute() {
           </Button>
         </CardContent>
       </Card>
-    </div>
+    </main>
   );
 }
 

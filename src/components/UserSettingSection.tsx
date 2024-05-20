@@ -14,9 +14,6 @@ function UserSettingSection() {
           <Server size={18} />
           <div className="text-start px-4 py-1">
             <TypographySmall>Import & Export</TypographySmall>
-            <TypographyMuted>
-              Extract or add podcast subscriptions via OPML
-            </TypographyMuted>
           </div>
         </a>
       </Button>

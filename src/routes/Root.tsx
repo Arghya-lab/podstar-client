@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Outlet, useNavigation, Link } from "react-router-dom";
 import { AlignJustify } from "lucide-react";
 import Navbar from "@/components/Navbar";
@@ -12,19 +12,20 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import Loader from "@/components/nano/Loader";
-import BottomPlayerBar from "@/components/BottomPlayerBar";
-import AudioPlayer from "@/components/AudioPlayer";
-import FullScreenPlayer from "@/components/FullScreenPlayer";
 import { usePlayerState } from "@/providers/playerState-provider";
 import Logo from "@/components/ui/appLogo-icon";
 import { getUser } from "@/api/auth";
 import { useGlobalStates } from "@/providers/globalStates-provider";
+import AudioPlayer from "@/components/playerComponents/AudioPlayer";
+import BottomPlayerBar from "@/components/playerComponents/BottomPlayerBar";
+import FullScreenPlayer from "@/components/playerComponents/FullScreenPlayer";
 
 function Root() {
   const navigation = useNavigation();
   const { windowWidth } = useWindowSize();
   const { playingCanceled } = usePlayerState();
   const { dispatch } = useGlobalStates();
+  const [isSideNavOpen, setIsSideNavOpen] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -43,16 +44,16 @@ function Root() {
   }, []);
 
   return (
-    <div className="relative mx-auto">
+    <div className="relative mx-auto overflow-clip">
       <section className="flex border-b items-center justify-between h-16">
         <div className="flex items-center">
           <Link to="/" className="px-8">
-            <Logo />
+            <Logo size={40} />
           </Link>
           <TypographyH1 className="font-nunito">Podstar</TypographyH1>
         </div>
         {windowWidth < 1280 && (
-          <Sheet>
+          <Sheet open={isSideNavOpen} onOpenChange={setIsSideNavOpen}>
             <SheetTrigger asChild>
               <Button
                 variant="link"
@@ -62,7 +63,10 @@ function Root() {
             </SheetTrigger>
             <SheetContent>
               <SheetHeader />
-              <Navbar className="h-full" />
+              <Navbar
+                onAction={() => setIsSideNavOpen(false)}
+                className="h-full"
+              />
             </SheetContent>
           </Sheet>
         )}

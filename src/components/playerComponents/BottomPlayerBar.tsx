@@ -3,7 +3,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { TypographyMuted, TypographyP } from "@/components/ui/typography";
 import { AudioLines } from "lucide-react";
 import useWindowSize from "@/hooks/useWindowSize";
-import EpLikeBtn from "@/components/nano/EpLikeBtn";
+import EpLikeBtn from "@/components/nano/EpFavoriteBtn";
 import EpPlayBtn from "@/components/nano/EpPlayBtn";
 import EpSkipBackBtn from "@/components/nano/EpSkipBackBtn";
 import EpSkipForwardBtn from "@/components/nano/EpSkipForwardBtn";
@@ -18,6 +18,8 @@ function BottomPlayerBar() {
   const { episode, epImgUrl, dispatch } = usePlayerState();
   const { windowWidth } = useWindowSize();
 
+  if (!episode) return null;
+
   return (
     <div className="absolute bottom-0 left-0 right-0 h-20 w-full rounded-t-[10px] border bg-background flex justify-between gap-1 p-2 md:px-4">
       <div className="w-full md:w-1/4 lg:w-[30%] md:max-w-64 flex gap-2 md:gap-4 items-center">
@@ -27,7 +29,7 @@ function BottomPlayerBar() {
             if (windowWidth < 768)
               dispatch({ type: "updateFullScreen", payload: true });
           }}>
-          <AvatarImage src={epImgUrl} alt={episode?.title} />
+          <AvatarImage src={epImgUrl} alt={episode.title} />
           <AvatarFallback className="rounded-lg">
             <AudioLines size={24} />
           </AvatarFallback>
@@ -39,13 +41,13 @@ function BottomPlayerBar() {
               dispatch({ type: "updateFullScreen", payload: true });
           }}>
           <TypographyP className="font-semibold line-clamp-1">
-            {episode?.title || episode?.itunesTitle}
+            {episode.title || episode?.itunesTitle}
           </TypographyP>
           <TypographyMuted className="line-clamp-1">
             {episode?.author || episode?.itunesAuthor}
           </TypographyMuted>
         </div>
-        {windowWidth >= 1024 && <EpLikeBtn />}
+        {windowWidth >= 1024 && <EpLikeBtn guid={episode.guid} />}
         {windowWidth < 768 && <EpPlayBtn />}
       </div>
       {windowWidth >= 768 && (

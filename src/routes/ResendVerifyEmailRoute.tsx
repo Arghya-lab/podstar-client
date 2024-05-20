@@ -1,3 +1,4 @@
+import { ApiResponseType } from "@/@types/res";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -14,14 +15,16 @@ import axios, { isAxiosError } from "axios";
 function ResendVerifyEmailRoute() {
   const handleSendVerificationEmail = async () => {
     try {
-      const { data } = await axios.get(
+      const { data }: { data: ApiResponseType } = await axios.get(
         `${config.apiBaseUrl}/auth/resend-verify-email`,
         {
           withCredentials: true,
         }
       );
 
-      console.log(data);
+      if (data.success) {
+        console.log(data.message);
+      }
     } catch (error) {
       if (isAxiosError(error)) {
         console.error("user not login");
@@ -30,7 +33,7 @@ function ResendVerifyEmailRoute() {
   };
 
   return (
-    <div className="flex-1 flex justify-center items-center p-4">
+    <main className="flex-1 flex justify-center items-center p-4">
       <Card className="w-full max-w-sm h-min text-center">
         <CardHeader>
           <CardTitle>Please verify your email</CardTitle>
@@ -48,7 +51,7 @@ function ResendVerifyEmailRoute() {
           </Button>
         </CardFooter>
       </Card>
-    </div>
+    </main>
   );
 }
 

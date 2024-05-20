@@ -7,7 +7,7 @@ function Logo({ className, size }: { className?: string; size?: number }) {
         y="0px"
         width={size ? size.toString() : "24"}
         height={size ? size.toString() : "24"}
-        viewBox="0 0 24 24">
+        viewBox="0 0 48 48">
         <circle cx="24" cy="24" r="6" fill="hsl(var(--foreground))"></circle>
         <path
           fill="hsl(var(--foreground))"

@@ -21,6 +21,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input, PasswordInput } from "@/components/ui/input";
+import { ApiResponseType } from "@/@types/res";
 
 function SignupComponent({ successRedirect }: { successRedirect: string }) {
   const handleLogin = useLogin();
@@ -37,12 +38,14 @@ function SignupComponent({ successRedirect }: { successRedirect: string }) {
 
   async function onSubmit(values: z.infer<typeof signupFormSchema>) {
     try {
-      const { data }: { data: { success: boolean; message: string } } =
-        await axios.post(`${config.apiBaseUrl}/auth/signup`, {
+      const { data }: { data: ApiResponseType } = await axios.post(
+        `${config.apiBaseUrl}/auth/signup`,
+        {
           userName: values.userName,
           email: values.email,
           password: values.password,
-        });
+        }
+      );
       if (data.success) {
         await handleLogin(values.email, values.password, successRedirect);
       } else {

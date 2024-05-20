@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronRight, Rewind } from "lucide-react";
+import { ChevronRight, FastForward } from "lucide-react";
 import SliderScale from "@/components/nano/SliderScale";
 import { TypographyH3, TypographySpan } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
@@ -11,27 +11,31 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
+import useSettings from "@/hooks/useSettings";
 
 function ForwardIntervalSetting() {
-  const [value, setValue] = useState(10);
+  const { settings, updateForwardInterval } = useSettings();
+  const [value, setValue] = useState(settings.forwardIntervalSec);
 
   return (
     <div className="pl-4 py-2 max-w-2xl flex justify-between items-center">
       <div className="flex gap-3 items-center">
-        <Rewind size={20} />
-        <TypographySpan>Rewind interval</TypographySpan>
+        <FastForward size={20} />
+        <TypographySpan>Forward interval</TypographySpan>
       </div>
       <Drawer>
         <DrawerTrigger asChild>
           <Button variant="ghost" className="gap-1">
-            {value}s
+            {settings.forwardIntervalSec}s
             <ChevronRight size={16} />
           </Button>
         </DrawerTrigger>
         <DrawerContent>
           <div className="mx-auto w-full max-w-lg">
             <DrawerHeader>
-              <DrawerTitle className="text-center">Playback speed</DrawerTitle>
+              <DrawerTitle className="text-center">
+                Forward interval
+              </DrawerTitle>
             </DrawerHeader>
             <div className="px-4 py-8">
               <TypographyH3 className="text-center pb-12">
@@ -49,7 +53,9 @@ function ForwardIntervalSetting() {
               />
             </div>
             <DrawerFooter>
-              <Button>Submit</Button>
+              <Button onClick={() => updateForwardInterval(value)}>
+                Submit
+              </Button>
             </DrawerFooter>
           </div>
         </DrawerContent>

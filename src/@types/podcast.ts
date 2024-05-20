@@ -1,4 +1,4 @@
-export interface PodcastSuggestionType {
+export interface PodcastItemType {
   _id: string;
   name: string;
   imgUrl: string;
@@ -77,4 +77,25 @@ export interface ItunesType {
   contentAdvisoryRating?: string;
   genreIds?: string[];
   genres?: string[];
+}
+
+export interface PodcastInfoType {
+  _id: string;
+  podcast: PodcastType;
+  episodes: EpisodeType[];
+  itunes?: ItunesType;
+}
+
+export interface FavoritePodcastType {
+  _id: string;
+  podcast: PodcastItemType;
+  title: string;
+  description: string;
+  enclosure: {
+    url: string;
+    type: string;
+  };
+  guid: string;
+  duration: number;
+  pubDate: string;
 }

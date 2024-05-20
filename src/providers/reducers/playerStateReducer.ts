@@ -13,6 +13,7 @@ export default function playerStateReducer(
         ...state,
         episode: action.payload.episode,
         epImgUrl: action.payload.epImgUrl || "",
+        podcastId: action.payload.podcastId,
         playing: false,
         muted: false,
         playingCanceled: false,

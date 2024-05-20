@@ -5,7 +5,7 @@ import { TypographyH3, TypographyMuted } from "@/components/ui/typography";
 
 function PlayerSettingsRoute() {
   return (
-    <div className="w-fill p-4 flex-1">
+    <main className="w-fill p-4 flex-1">
       <TypographyH3 className="pb-8">Player settings</TypographyH3>
       <div className="p-4">
         <TypographyMuted className="text-base pb-2">
@@ -20,7 +20,7 @@ function PlayerSettingsRoute() {
         <RewindIntervalSetting />
         <ForwardIntervalSetting />
       </div>
-    </div>
+    </main>
   );
 }
 

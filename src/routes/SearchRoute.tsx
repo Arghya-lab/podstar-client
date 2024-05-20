@@ -1,19 +1,19 @@
 import { useEffect, useRef, useState } from "react";
 import { Input } from "@/components/ui/input";
-import { PodcastSuggestionType } from "@/@types/podcast";
-import PodcastSuggestionBg from "@/components/PodcastSuggestionBg";
-import { fetchPodcastSuggestion, searchPodcastByUrl } from "@/api/podcast";
+import { PodcastItemType } from "@/@types/podcast";
+import { searchPodcast, searchPodcastByUrl } from "@/api/podcast";
 import isValidUrl from "@/utils/isValidUrl";
-import PodcastSuggestionList from "@/components/PodcastSuggestionList";
 import MonaLisaLoadingAnimation from "@/components/ui/MonaLisaLoadingAnimation";
 import { TypographyLarge } from "@/components/ui/typography";
+import PodcastSuggestionBg from "@/components/podcastComponents/PodcastSuggestionBg";
+import PodcastSuggestionList from "@/components/podcastComponents/PodcastSuggestionList";
 
 let timeoutId: NodeJS.Timeout;
 
 function SearchRoute() {
   const inputRef = useRef<HTMLInputElement>(null);
   const [searchQuery, setSearchQuery] = useState("");
-  const [podcasts, setPodcasts] = useState<PodcastSuggestionType[]>([]);
+  const [podcasts, setPodcasts] = useState<PodcastItemType[]>([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
@@ -48,11 +48,11 @@ function SearchRoute() {
         setIsDataFetched(true);
       } else {
         if (searchQuery.length >= 3) {
-          const res = await fetchPodcastSuggestion({ searchQuery });
-          if (res?.data) {
-            setPodcasts(res.data);
-            setPage(res.page);
-            setHasMore(res.hasNextPage);
+          const data = await searchPodcast({ searchQuery });
+          if (data?.result) {
+            setPodcasts(data.result);
+            setPage(data.page);
+            setHasMore(data.hasNextPage);
           }
           setIsDataFetched(true);
         }
@@ -66,12 +66,12 @@ function SearchRoute() {
   }, [searchQuery]);
 
   const fetchMoreData = async () => {
-    const res = await fetchPodcastSuggestion({ searchQuery, page: page + 1 });
+    const data = await searchPodcast({ searchQuery, page: page + 1 });
 
-    if (res?.data) {
-      setPage(res.page);
-      setHasMore(res.hasNextPage);
-      setPodcasts((pre) => [...pre, ...res.data]);
+    if (data?.result) {
+      setPage(data.page);
+      setHasMore(data.hasNextPage);
+      setPodcasts((pre) => [...pre, ...data.result]);
     }
   };
 

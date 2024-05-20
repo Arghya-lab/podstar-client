@@ -1,20 +1,24 @@
 import { ChangeEvent, useState } from "react";
 import Fuse from "fuse.js";
 import { LoaderFunction, useLoaderData } from "react-router-dom";
+import { FixedSizeList as List } from "react-window";
+import AutoSizer from "react-virtualized-auto-sizer";
 import { getPodcastInfo } from "@/api/podcast";
-import EpisodesSection from "@/components/EpisodesSection";
-import PodcastInfoSection from "@/components/PodcastInfoSection";
-import { getPodcastInfoType } from "@/@types/res";
-import PodcastInfoSectionRapper from "@/components/PodcastInfoSectionRapper";
 import { useGlobalStates } from "@/providers/globalStates-provider";
 import useWindowSize from "@/hooks/useWindowSize";
 import { Input } from "@/components/ui/input";
+import { PodcastInfoType } from "@/@types/podcast";
+import PodcastInfoSectionRapper from "@/components/podcastComponents/PodcastInfoSectionRapper";
+import PodcastInfoSection from "@/components/podcastComponents/PodcastInfoSection";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import EpisodeItem from "@/components/micro/EpisodeItem";
 import { EpisodeType } from "@/@types/podcast";
 
 export const PodcastRouteLoader: LoaderFunction = async ({ params }) => {
   const id = params.id;
   if (id) {
-    return (await getPodcastInfo(id)) || null;
+    const data = await getPodcastInfo(id);
+    return data ? { data, id } : null;
   }
   return null;
 };
@@ -22,15 +26,20 @@ export const PodcastRouteLoader: LoaderFunction = async ({ params }) => {
 function PodcastRoute() {
   const { windowWidth } = useWindowSize();
   const { isPodcastCollapsibleOpen } = useGlobalStates();
-  const data = useLoaderData() as getPodcastInfoType | null;
-  console.log(data);
+  const res = useLoaderData() as {
+    data: PodcastInfoType;
+    id: string;
+  } | null;
 
-  const [filteredEpisodes, setFilteredEpisodes] = useState<EpisodeType[]>(
-    data?.episodes || []
-  );
+  // console.log(res?.data);
+
   const [searchQuery, setSearchQuery] = useState("");
+  const [filteredEpisodes, setFilteredEpisodes] = useState<EpisodeType[]>(
+    res?.data.episodes || []
+  );
 
-  if (!data) return null;
+  if (!res?.data) return null;
+  const { data, id } = res;
 
   const fuse = new Fuse(data.episodes || [], { keys: ["title"] });
 
@@ -49,14 +58,16 @@ function PodcastRoute() {
 
   return (
     <main className="flex flex-1 flex-col lg:flex-row">
-      <PodcastInfoSectionRapper
-        title={data.podcast?.title || data.itunes?.trackName}>
-        <PodcastInfoSection
-          id={data._id}
-          podcast={data.podcast}
-          itunes={data.itunes}
-        />
-      </PodcastInfoSectionRapper>
+      <ScrollArea className="lg:w-96 p-4">
+        <PodcastInfoSectionRapper
+          title={data.podcast.title || data.itunes?.trackName}>
+          <PodcastInfoSection
+            id={data._id}
+            podcast={data.podcast}
+            itunes={data.itunes}
+          />
+        </PodcastInfoSectionRapper>
+      </ScrollArea>
       {(!isPodcastCollapsibleOpen || windowWidth >= 1024) && (
         <div className="flex flex-col flex-1">
           <div className="p-4 pb-0">
@@ -67,10 +78,27 @@ function PodcastRoute() {
               placeholder="Search for Episodes..."
             />
           </div>
-          <EpisodesSection
-            episodes={filteredEpisodes}
-            imgUrl={data.podcast?.image?.url}
-          />
+          <section className="p-4 flex-1 flex flex-col">
+            <AutoSizer>
+              {({ height, width }) => (
+                <List
+                  height={height}
+                  itemCount={filteredEpisodes.length}
+                  itemSize={104}
+                  width={width}>
+                  {({ index, style }) => (
+                    <EpisodeItem
+                      key={filteredEpisodes[index].guid}
+                      imgUrl={data.podcast.image?.url}
+                      episode={filteredEpisodes[index]}
+                      podcastId={id}
+                      style={style}
+                    />
+                  )}
+                </List>
+              )}
+            </AutoSizer>
+          </section>
         </div>
       )}
     </main>

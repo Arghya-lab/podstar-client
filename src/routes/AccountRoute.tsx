@@ -5,7 +5,7 @@ import config from "@/config";
 
 function AccountRoute() {
   return (
-    <div className="p-4 w-full">
+    <main className="p-4 w-full">
       <TypographyH3>Account</TypographyH3>
       <div className="p-4 w-full flex justify-center">
         <div className="w-full max-w-md py-8">
@@ -21,7 +21,7 @@ function AccountRoute() {
           </Button>
         </div>
       </div>
-    </div>
+    </main>
   );
 }
 

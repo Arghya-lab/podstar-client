@@ -21,6 +21,7 @@ import {
   InputOTPSlot,
 } from "@/components/ui/input-otp";
 import { otpTokenFormSchema } from "@/schemas";
+import { ApiResponseType } from "@/@types/res";
 
 function ForgotPasswordOtpTokenForm({ state }: { state: StateType }) {
   const navigate = useNavigate();
@@ -37,10 +38,7 @@ function ForgotPasswordOtpTokenForm({ state }: { state: StateType }) {
       const {
         data,
       }: {
-        data: {
-          success: boolean;
-          message: string;
-        };
+        data: ApiResponseType;
       } = await axios.post(
         `${config.apiBaseUrl}/auth/resetPassword-withToken`,
         {

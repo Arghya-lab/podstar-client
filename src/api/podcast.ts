@@ -1,9 +1,9 @@
 import axios, { isAxiosError } from "axios";
 import config from "@/config";
-import { PodcastSuggestionType } from "@/@types/podcast";
-import { getPodcastInfoType } from "@/@types/res";
+import { PodcastInfoType, PodcastItemType } from "@/@types/podcast";
+import { ApiResponseType } from "@/@types/res";
 
-export async function fetchPodcastSuggestion({
+export async function searchPodcast({
   searchQuery,
   page,
   perPage,
@@ -19,11 +19,11 @@ export async function fetchPodcastSuggestion({
     const {
       data,
     }: {
-      data: {
-        data: PodcastSuggestionType[];
+      data: ApiResponseType<{
+        result: PodcastItemType[];
         page: number;
         hasNextPage: boolean;
-      };
+      }>;
     } = await axios.get(`${config.apiBaseUrl}/podcast`, {
       params: {
         query: searchQuery,
@@ -32,7 +32,9 @@ export async function fetchPodcastSuggestion({
       },
     });
 
-    return data;
+    if (data.success) {
+      return data.data;
+    }
   } catch (error) {
     if (isAxiosError(error)) {
       console.error(error.message);
@@ -42,14 +44,14 @@ export async function fetchPodcastSuggestion({
 
 export async function searchPodcastByUrl(url: string) {
   try {
-    const { data }: { data: PodcastSuggestionType } = await axios.post(
-      `${config.apiBaseUrl}/podcast/add`,
-      {
+    const { data }: { data: ApiResponseType<PodcastItemType> } =
+      await axios.post(`${config.apiBaseUrl}/podcast/add`, {
         feedUrl: url,
-      }
-    );
+      });
 
-    return data;
+    if (data.success) {
+      return data.data;
+    }
   } catch (error) {
     if (isAxiosError(error)) {
       console.error(error.message);
@@ -59,30 +61,19 @@ export async function searchPodcastByUrl(url: string) {
 
 export async function getPodcastInfo(id: string) {
   try {
-    const { data }: { data: getPodcastInfoType } = await axios.get(
-      `${config.apiBaseUrl}/podcast/info`,
-      {
-        params: {
-          id,
-        },
-      }
-    );
+    const {
+      data,
+    }: {
+      data: ApiResponseType<PodcastInfoType>;
+    } = await axios.get(`${config.apiBaseUrl}/podcast/info`, {
+      params: {
+        id,
+      },
+    });
 
-    return data;
-  } catch (error) {
-    if (isAxiosError(error)) {
-      console.error(error.message);
+    if (data.success) {
+      return data.data;
     }
-  }
-}
-
-export async function getTrending() {
-  try {
-    const { data }: { data: PodcastSuggestionType[] } = await axios.get(
-      `${config.apiBaseUrl}/podcast/trending`
-    );
-
-    return data;
   } catch (error) {
     if (isAxiosError(error)) {
       console.error(error.message);
