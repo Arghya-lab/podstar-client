@@ -1,10 +1,11 @@
-import { TypographyH3, TypographyH4 } from "@/components/ui/typography";
+import { TypographyH3 } from "@/components/ui/typography";
 import { LayoutGrid } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import useTrending from "@/hooks/useTrending";
 import useWindowSize from "@/hooks/useWindowSize";
 import PodcastAvatar from "@/components/micro/PodcastAvatar";
+import { Skeleton } from "@/components/ui/skeleton";
 
 function TrendingHomeSection() {
   const { trending } = useTrending();
@@ -21,7 +22,7 @@ function TrendingHomeSection() {
         </Button>
       </div>
       {!trending ? (
-        <TypographyH4>Loading.......</TypographyH4>
+        <Skeleton className="rounded-lg h-96 w-full" />
       ) : (
         <div
           className="grid gap-2 xs:gap-3 justify-around"

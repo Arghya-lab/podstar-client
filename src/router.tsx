@@ -15,9 +15,11 @@ import ChangePasswordRoute from "@/routes/ChangePasswordRoute";
 import ImportExportRoute from "@/routes/ImportExportRoute";
 import PlayerSettingsRoute from "@/routes/PlayerSettingsRoute";
 import RequireAuth from "@/components/authComponents/RequireAuth";
-import SubscriptionsRoute from "./routes/SubscriptionsRoute";
-import TrendingRoute from "./routes/TrendingRoute";
-import FavoritesRoutes from "./routes/FavoritesRoutes";
+import SubscriptionsRoute from "@/routes/SubscriptionsRoute";
+import TrendingRoute from "@/routes/TrendingRoute";
+import FavoritesRoutes from "@/routes/FavoritesRoutes";
+import RequireUnverifiedUser from "@/components/authComponents/RequireUnverifiedUser";
+import RequireUnAuth from "@/components/authComponents/RequireUnAuth";
 
 const router = createBrowserRouter([
   {
@@ -52,27 +54,43 @@ const router = createBrowserRouter([
       },
       {
         path: "/verify-email",
-        element: <VerifyEmailRoute />,
+        element: (
+          <RequireAuth>
+            <RequireUnverifiedUser>
+              <VerifyEmailRoute />
+            </RequireUnverifiedUser>
+          </RequireAuth>
+        ),
       },
       {
         path: "/forgot-password",
-        element: <ForgotPasswordRoute />,
+        element: (
+          <RequireUnAuth>
+            <ForgotPasswordRoute />,
+          </RequireUnAuth>
+        ),
       },
       {
         path: "/change-password",
-        element: <ChangePasswordRoute />,
-      },
-      {
-        path: "/you",
-        element: <UserRoute />,
+        element: (
+          <RequireAuth>
+            <ChangePasswordRoute />,
+          </RequireAuth>
+        ),
       },
       {
         path: "/resend-verify-email",
         element: (
           <RequireAuth>
-            <ResendVerifyEmailRoute />,
+            <RequireUnverifiedUser>
+              <ResendVerifyEmailRoute />,
+            </RequireUnverifiedUser>
           </RequireAuth>
         ),
+      },
+      {
+        path: "/you",
+        element: <UserRoute />,
       },
       {
         path: "/account",

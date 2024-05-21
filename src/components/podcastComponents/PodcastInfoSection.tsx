@@ -28,7 +28,7 @@ function PodcastInfoSection({
 
   return (
     <>
-      <div className="max-h-64 max-w-64 mx-auto pt-8">
+      <div className="max-h-64 max-w-64 mx-auto p-4 pt-8">
         <AspectRatio ratio={1 / 1} className="bg-muted rounded-lg">
           <Avatar className="h-full w-full rounded-lg">
             <AvatarImage src={podcast.image?.url} alt={podcast.image?.title} />
@@ -38,7 +38,7 @@ function PodcastInfoSection({
           </Avatar>
         </AspectRatio>
       </div>
-      <section className="w-full pt-16 lg:w-auto max-w-lg mx-auto">
+      <section className="w-full p-4 pt-16 lg:w-auto max-w-lg mx-auto">
         <TypographyH4 className="text-2xl text-pretty">
           {podcast.title || itunes?.trackName}
         </TypographyH4>

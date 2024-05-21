@@ -1,5 +1,5 @@
 import useWindowSize from "@/hooks/useWindowSize";
-import { TypographyH3 } from "@/components/ui/typography";
+import { TypographyH3, TypographyLead } from "@/components/ui/typography";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import PodcastCard from "@/components/podcastComponents/PodcastCard";
 import { PodcastItemType } from "@/@types/podcast";
@@ -14,12 +14,10 @@ function PodcastCardContainer({
   const { windowWidth } = useWindowSize();
 
   return (
-    <ScrollArea className="p-4 w-full">
-      {title && (
-        <TypographyH3 className="capitalize pb-8">{title}</TypographyH3>
-      )}
+    <ScrollArea className="w-full">
+      {title && <TypographyH3 className="capitalize p-4">{title}</TypographyH3>}
       <div
-        className="grid gap-4 justify-normal grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6"
+        className="p-4 grid gap-4 justify-normal grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6"
         style={
           windowWidth >= 1440
             ? {
@@ -31,6 +29,11 @@ function PodcastCardContainer({
           <PodcastCard key={sub._id} data={sub} />
         ))}
       </div>
+      {data.length === 0 && (
+        <TypographyLead className="p-6 text-center">
+          No relatable podcast found.
+        </TypographyLead>
+      )}
     </ScrollArea>
   );
 }

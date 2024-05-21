@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import PodcastAvatar from "../micro/PodcastAvatar";
-import { TypographyMuted, TypographyP } from "../ui/typography";
+import PodcastAvatar from "@/components/micro/PodcastAvatar";
+import { TypographyMuted, TypographyP } from "@/components/ui/typography";
 import { PodcastItemType } from "@/@types/podcast";
 import { cn } from "@/lib/utils";
 
@@ -22,7 +22,9 @@ function PodcastCard({ data }: { data: PodcastItemType }) {
           )}>
           {data.name}
         </TypographyP>
-        <TypographyMuted className="text-sm">{data.author}</TypographyMuted>
+        <TypographyMuted className="text-sm text-pretty line-clamp-2">
+          {data.author}
+        </TypographyMuted>
       </Link>
     </div>
   );

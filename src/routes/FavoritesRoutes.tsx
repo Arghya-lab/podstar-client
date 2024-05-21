@@ -9,10 +9,10 @@ function FavoritesRoutes() {
   const { favorites } = useFavorite();
 
   return (
-    <ScrollArea className="p-4 w-full">
-      <TypographyH3 className="capitalize pb-8">favorites</TypographyH3>
+    <ScrollArea className="w-full">
+      <TypographyH3 className="capitalize p-4">favorites</TypographyH3>
       <div
-        className="grid gap-4 justify-normal grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6"
+        className="p-4 grid gap-4 justify-normal grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6"
         style={
           windowWidth >= 1440
             ? {

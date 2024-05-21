@@ -10,6 +10,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ApiResponseType } from "@/@types/res";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 function VerifyEmailRoute() {
   const [searchParams] = useSearchParams();
@@ -40,23 +41,25 @@ function VerifyEmailRoute() {
   };
 
   return (
-    <main className="flex-1 flex justify-center items-center p-4">
-      <Card className="w-full max-w-sm h-min">
-        <CardHeader>
-          <CardTitle className="text-center">
-            Verify your email address
-          </CardTitle>
-          <CardDescription className="text-center">
-            To verify your email address click below.
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="pt-12 pb-8">
-          <Button className="w-full" onClick={handleVerifyBtnClick}>
-            Click To Verify
-          </Button>
-        </CardContent>
-      </Card>
-    </main>
+    <ScrollArea className="w-full">
+      <main className="flex-1 flex justify-center px-4 pt-12 pb-8">
+        <Card className="w-full max-w-sm h-min">
+          <CardHeader>
+            <CardTitle className="text-center">
+              Verify your email address
+            </CardTitle>
+            <CardDescription className="text-center">
+              To verify your email address click below.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="pt-12 pb-8">
+            <Button className="w-full" onClick={handleVerifyBtnClick}>
+              Click To Verify
+            </Button>
+          </CardContent>
+        </Card>
+      </main>
+    </ScrollArea>
   );
 }
 

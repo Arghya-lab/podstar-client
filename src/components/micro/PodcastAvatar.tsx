@@ -24,7 +24,7 @@ function PodcastAvatar({
           )}>
           <AvatarImage src={data.imgUrl} alt={data.name} />
           <AvatarFallback className={isRounded ? "rounded-lg" : "rounded-none"}>
-            <AudioLines />
+            <AudioLines size={36} />
           </AvatarFallback>
         </Avatar>
       </AspectRatio>

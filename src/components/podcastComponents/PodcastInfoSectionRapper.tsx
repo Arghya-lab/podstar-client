@@ -26,8 +26,8 @@ function PodcastInfoSectionRapper({
         onOpenChange={() => {
           dispatch({ type: "togglePodcastCollapsible" });
         }}
-        className="pt-4 space-y-2">
-        <div className="flex items-center justify-between space-x-4">
+        className="space-y-2">
+        <div className="flex items-center justify-between space-x-4 p-4">
           <h4 className="font-semibold text-lg">
             {title || "Expand for more data"}
           </h4>

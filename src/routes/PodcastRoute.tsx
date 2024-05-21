@@ -58,7 +58,7 @@ function PodcastRoute() {
 
   return (
     <main className="flex flex-1 flex-col lg:flex-row">
-      <ScrollArea className="lg:w-96 p-4">
+      <ScrollArea className="lg:w-96">
         <PodcastInfoSectionRapper
           title={data.podcast.title || data.itunes?.trackName}>
           <PodcastInfoSection
