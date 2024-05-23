@@ -32,7 +32,7 @@ function EpisodeItem({
         });
       }}>
       <div className="p-2 flex hover:bg-muted rounded-lg cursor-pointer">
-        <Avatar className="h-16 w-16 xs:h-20 xs:w-20 rounded-lg">
+        <Avatar className="h-16 w-16 xs:h-20 xs:w-20">
           {playing && episode.guid && episode.guid === playingEp?.guid && (
             <div className="absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center bg-white dark:bg-black bg-opacity-50 dark:bg-opacity-50">
               <div className="w-1/2 flex justify-between items-center">
@@ -44,7 +44,7 @@ function EpisodeItem({
             </div>
           )}
           <AvatarImage src={imgUrl} alt={episode.title} />
-          <AvatarFallback className="rounded-lg">
+          <AvatarFallback>
             <AudioLines size={24} />
           </AvatarFallback>
         </Avatar>

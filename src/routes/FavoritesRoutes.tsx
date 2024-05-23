@@ -1,12 +1,12 @@
 import FavoritesEpisodeItem from "@/components/podcastComponents/FavoritesEpisodeItem";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { TypographyH3 } from "@/components/ui/typography";
-import useFavorite from "@/hooks/useFavorite";
+import useFavorites from "@/hooks/useFavorites";
 import useWindowSize from "@/hooks/useWindowSize";
 
 function FavoritesRoutes() {
   const { windowWidth } = useWindowSize();
-  const { favorites } = useFavorite();
+  const { favorites } = useFavorites();
 
   return (
     <ScrollArea className="w-full">

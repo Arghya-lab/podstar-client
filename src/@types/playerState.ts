@@ -22,7 +22,6 @@ export interface PlayerStateType {
   duration: number;
   formattedDuration: string;
   loaded: number;
-  playbackRate: number;
   buffering: boolean;
   playerFullScreen: boolean;
   playingCanceled: boolean;

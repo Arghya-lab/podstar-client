@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Card, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { TypographySpan } from "@/components/ui/typography";
@@ -33,7 +33,7 @@ function LoginRoute() {
           <CardFooter className="flex-col items-start">
             {formType === "login" && (
               <Button variant="link" className="px-0" asChild>
-                <a href="/forgot-password">Forgot password</a>
+                <Link to="/forgot-password">Forgot password</Link>
               </Button>
             )}
             <div>

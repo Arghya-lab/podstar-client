@@ -1,6 +1,7 @@
 import { CirclePlay, Server } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TypographyMuted, TypographySmall } from "@/components/ui/typography";
+import { Link } from "react-router-dom";
 
 function UserSettingSection() {
   return (
@@ -10,23 +11,23 @@ function UserSettingSection() {
         variant="link"
         className="hover:no-underline hover:bg-secondary/80 h-auto w-full justify-start my-1"
         asChild>
-        <a href="/import-export">
+        <Link to="/import-export">
           <Server size={18} />
           <div className="text-start px-4 py-1">
             <TypographySmall>Import & Export</TypographySmall>
           </div>
-        </a>
+        </Link>
       </Button>
       <Button
         variant="link"
         className="hover:no-underline hover:bg-secondary/80 h-auto w-full justify-start my-1"
         asChild>
-        <a href="/player-setting">
+        <Link to="/player-setting">
           <CirclePlay size={18} />
           <div className="text-start px-4 py-1">
             <TypographySmall>Player</TypographySmall>
           </div>
-        </a>
+        </Link>
       </Button>
     </div>
   );

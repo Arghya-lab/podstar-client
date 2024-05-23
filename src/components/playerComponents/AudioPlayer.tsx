@@ -1,5 +1,6 @@
 import ReactPlayer from "react-player";
 import { usePlayerState } from "@/providers/playerState-provider";
+import { useGlobalStates } from "@/providers/globalStates-provider";
 
 function AudioPlayer() {
   const {
@@ -11,6 +12,7 @@ function AudioPlayer() {
     audioPlayerRef,
     dispatch,
   } = usePlayerState();
+  const { settings } = useGlobalStates();
 
   return (
     <ReactPlayer
@@ -22,6 +24,7 @@ function AudioPlayer() {
       playing={playing}
       volume={volume}
       muted={muted}
+      playbackRate={settings.playbackSpeed}
       onDuration={(duration) => {
         dispatch({ type: "setAudioDuration", payload: duration });
       }}

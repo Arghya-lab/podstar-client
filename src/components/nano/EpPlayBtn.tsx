@@ -8,13 +8,13 @@ function EpPlayBtn({
 }: {
   size?: "small" | "medium" | "large";
 }) {
-  const { playing, buffering, played, dispatch } = usePlayerState();
+  const { playing, buffering, loaded, dispatch } = usePlayerState();
   const iconSize = size === "small" ? 24 : size === "medium" ? 32 : 40;
   return (
     <Button
       variant="secondary"
       className={cn(
-        "rounded-full",
+        "rounded-full relative",
         size === "small"
           ? "h-10 w-10 p-1.5"
           : size === "medium"
@@ -29,7 +29,7 @@ function EpPlayBtn({
       ) : (
         <Pause size={iconSize} strokeWidth={1} className="fill-foreground" />
       )}
-      {(buffering || (played === 0 && playing)) && (
+      {(buffering || loaded === 0) && (
         <LoaderCircle
           className={cn(
             "rounded-full overflow-clip absolute animate-spin",

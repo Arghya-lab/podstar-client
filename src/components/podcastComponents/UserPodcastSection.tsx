@@ -1,6 +1,7 @@
 import { GalleryVerticalEnd, Heart, History } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TypographyMuted, TypographySmall } from "@/components/ui/typography";
+import { Link } from "react-router-dom";
 
 function UserPodcastSection() {
   return (
@@ -10,34 +11,34 @@ function UserPodcastSection() {
         variant="link"
         className="hover:no-underline hover:bg-secondary/80 h-auto w-full justify-start my-1"
         asChild>
-        <a href="/subscriptions">
+        <Link to="/subscriptions">
           <GalleryVerticalEnd size={18} />
           <div className="text-start px-4 py-1">
             <TypographySmall>Subscriptions</TypographySmall>
           </div>
-        </a>
+        </Link>
       </Button>
       <Button
         variant="link"
         className="hover:no-underline hover:bg-secondary/80 h-auto w-full justify-start my-1"
         asChild>
-        <a href="/favorites">
+        <Link to="/favorites">
           <Heart size={18} />
           <div className="text-start px-4 py-1">
             <TypographySmall>Favorites</TypographySmall>
           </div>
-        </a>
+        </Link>
       </Button>
       <Button
         variant="link"
         className="hover:no-underline hover:bg-secondary/80 h-auto w-full justify-start my-1"
         asChild>
-        <a href="/history">
+        <Link to="/history">
           <History size={18} />
           <div className="text-start px-4 py-1">
             <TypographySmall>History</TypographySmall>
           </div>
-        </a>
+        </Link>
       </Button>
     </div>
   );

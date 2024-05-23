@@ -24,13 +24,13 @@ function BottomPlayerBar() {
     <div className="absolute bottom-0 left-0 right-0 h-20 w-full rounded-t-[10px] border bg-background flex justify-between gap-1 p-2 md:px-4">
       <div className="w-full md:w-1/4 lg:w-[30%] md:max-w-64 flex gap-2 md:gap-4 items-center">
         <Avatar
-          className="h-14 w-14 rounded-lg"
+          className="h-14 w-14"
           onClick={() => {
             if (windowWidth < 768)
               dispatch({ type: "updateFullScreen", payload: true });
           }}>
           <AvatarImage src={epImgUrl} alt={episode.title} />
-          <AvatarFallback className="rounded-lg">
+          <AvatarFallback>
             <AudioLines size={24} />
           </AvatarFallback>
         </Avatar>

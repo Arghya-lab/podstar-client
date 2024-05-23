@@ -1,6 +1,0 @@
-[[headers]]
-for = "/*"
-  [headers.values]
-  Access-Control-Allow-Origin = "https://podstar-app.netlify.app"
-  Access-Control-Allow-Credentials = "true"
-  Access-Control-Allow-Methods = "GET,PUT,PATCH,POST,DELETE"

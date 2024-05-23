@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
 import { ItunesType, PodcastType } from "@/@types/podcast";
-import useSubscription from "@/hooks/useSubscriptions";
+import useSubscriptions from "@/hooks/useSubscriptions";
 
 function PodcastInfoSection({
   id,
@@ -22,7 +22,7 @@ function PodcastInfoSection({
   podcast: PodcastType;
   itunes?: ItunesType;
 }) {
-  const { subscriptions, handleSubscribe } = useSubscription();
+  const { subscriptions, handleSubscribe } = useSubscriptions();
 
   if (!podcast && !itunes) return null;
 
@@ -30,7 +30,7 @@ function PodcastInfoSection({
     <>
       <div className="max-h-64 max-w-64 mx-auto p-4 pt-8">
         <AspectRatio ratio={1 / 1} className="bg-muted rounded-lg">
-          <Avatar className="h-full w-full rounded-lg">
+          <Avatar className="h-full w-full">
             <AvatarImage src={podcast.image?.url} alt={podcast.image?.title} />
             <AvatarFallback>
               <AudioLines className="h-44 w-44" />

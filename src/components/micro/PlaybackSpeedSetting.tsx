@@ -16,6 +16,7 @@ import useSettings from "@/hooks/useSettings";
 function PlaybackSpeedSetting() {
   const { settings, updatePlaybackSpeed } = useSettings();
   const [value, setValue] = useState(settings.playbackSpeed);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   return (
     <div className="pl-4 py-2 max-w-2xl flex justify-between items-center">
@@ -23,7 +24,9 @@ function PlaybackSpeedSetting() {
         <CircleGauge />
         <TypographySpan>Playback speed</TypographySpan>
       </div>
-      <Drawer>
+      <Drawer
+        open={isDrawerOpen}
+        onOpenChange={(state) => setIsDrawerOpen(state)}>
         <DrawerTrigger asChild>
           <Button variant="ghost" className="gap-1">
             {settings.playbackSpeed.toFixed(1)}x
@@ -49,7 +52,13 @@ function PlaybackSpeedSetting() {
               />
             </div>
             <DrawerFooter>
-              <Button onClick={() => updatePlaybackSpeed(value)}>Submit</Button>
+              <Button
+                onClick={async () => {
+                  await updatePlaybackSpeed(value);
+                  setIsDrawerOpen(false);
+                }}>
+                Submit
+              </Button>
             </DrawerFooter>
           </div>
         </DrawerContent>

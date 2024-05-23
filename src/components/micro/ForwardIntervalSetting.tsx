@@ -16,6 +16,7 @@ import useSettings from "@/hooks/useSettings";
 function ForwardIntervalSetting() {
   const { settings, updateForwardInterval } = useSettings();
   const [value, setValue] = useState(settings.forwardIntervalSec);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   return (
     <div className="pl-4 py-2 max-w-2xl flex justify-between items-center">
@@ -23,7 +24,9 @@ function ForwardIntervalSetting() {
         <FastForward size={20} />
         <TypographySpan>Forward interval</TypographySpan>
       </div>
-      <Drawer>
+      <Drawer
+        open={isDrawerOpen}
+        onOpenChange={(state) => setIsDrawerOpen(state)}>
         <DrawerTrigger asChild>
           <Button variant="ghost" className="gap-1">
             {settings.forwardIntervalSec}s
@@ -53,7 +56,11 @@ function ForwardIntervalSetting() {
               />
             </div>
             <DrawerFooter>
-              <Button onClick={() => updateForwardInterval(value)}>
+              <Button
+                onClick={async () => {
+                  await updateForwardInterval(value);
+                  setIsDrawerOpen(false);
+                }}>
                 Submit
               </Button>
             </DrawerFooter>

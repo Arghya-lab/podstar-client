@@ -1,9 +1,9 @@
-import useSubscription from "@/hooks/useSubscriptions";
+import useSubscriptions from "@/hooks/useSubscriptions";
 import PodcastCardContainer from "@/components/podcastComponents/PodcastCardContainer";
 import { TypographyLead } from "@/components/ui/typography";
 
 function SubscriptionsRoute() {
-  const { subscriptions } = useSubscription();
+  const { subscriptions } = useSubscriptions();
 
   if (!subscriptions) return <TypographyLead>Loading</TypographyLead>;
 

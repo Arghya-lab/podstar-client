@@ -1,7 +1,7 @@
-import { Button } from "@/components/ui/button";
-import useFavorite from "@/hooks/useFavorite";
-import { cn } from "@/lib/utils";
 import { Heart } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import useFavorite from "@/hooks/useFavorites";
+import { cn } from "@/lib/utils";
 
 function EpFavoriteBtn({
   size = "small",
@@ -23,7 +23,8 @@ function EpFavoriteBtn({
       <Heart
         className="opacity-75 hover:opacity-90"
         fill={
-          favorites && favorites.map((i) => i.guid).includes(guid)
+          favorites &&
+          favorites.map((i) => i.episodeContent.guid).includes(guid)
             ? "hsl(var(--foreground))"
             : ""
         }

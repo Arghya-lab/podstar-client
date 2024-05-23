@@ -20,6 +20,13 @@ export default function playerStateReducer(
         timeStamps: timeStampParser(
           convert(action.payload.episode.contentEncoded)
         ),
+        played: 0,
+        formattedCurrentTime: "00:00",
+        formattedRemainTime: "00:00",
+        duration: 0,
+        formattedDuration: "00:00",
+        loaded: 0,
+        buffering: false,
       };
       break;
     case "togglePlayPause":

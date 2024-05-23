@@ -3,11 +3,11 @@ import { LayoutGrid } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import useWindowSize from "@/hooks/useWindowSize";
-import useSubscription from "@/hooks/useSubscriptions";
+import useSubscriptions from "@/hooks/useSubscriptions";
 import PodcastAvatar from "@/components/micro/PodcastAvatar";
 
 function UserSubscriptionsHomeSection() {
-  const { subscriptions } = useSubscription();
+  const { subscriptions } = useSubscriptions();
   const { windowWidth } = useWindowSize();
 
   if (subscriptions?.length === 0 || !subscriptions) return null;
@@ -23,18 +23,14 @@ function UserSubscriptionsHomeSection() {
         </Button>
       </div>
       <div
-        className="grid gap-2 xs:gap-3 justify-normal"
-        style={{
-          gridTemplateColumns: `repeat(auto-fit, minmax(${
-            windowWidth < 426
-              ? "5rem, 5.5rem"
-              : windowWidth < 640
-              ? "5rem, 6rem"
-              : windowWidth < 768
-              ? "5.75rem, 6.75rem"
-              : "6.5rem, 7rem"
-          }))`,
-        }}>
+        className="grid gap-2 xs:gap-3 grid-cols-4 xs:grid-cols-5 sm:grid-cols-6 md:grid-cols-7 lg:grid-cols-8 xl:grid-cols-9 2xl:grid-cols-10 justify-normal"
+        style={
+          windowWidth >= 1600
+            ? {
+                gridTemplateColumns: `repeat(auto-fit, minmax(7rem, 8.5rem)`,
+              }
+            : {}
+        }>
         {subscriptions.slice(0, 20).map((item) => (
           <PodcastAvatar key={item._id} data={item} />
         ))}

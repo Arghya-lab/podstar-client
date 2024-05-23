@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -20,7 +21,7 @@ function VerifyEmailCard() {
         </CardHeader>
         <CardFooter className="flex justify-between sm:pb-0">
           <Button asChild>
-            <a href="/resend-verify-email">Resend verification link</a>
+            <Link to="/resend-verify-email">Resend verification link</Link>
           </Button>
         </CardFooter>
       </Card>

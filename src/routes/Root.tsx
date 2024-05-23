@@ -38,7 +38,14 @@ function Root() {
             settings: res.settings,
           },
         });
+      } else {
+        dispatch({
+          type: "setOfflineSetting",
+        });
       }
+      dispatch({
+        type: "setUserFetched",
+      });
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

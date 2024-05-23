@@ -16,6 +16,7 @@ import useSettings from "@/hooks/useSettings";
 function RewindIntervalSetting() {
   const { settings, updateRewindInterval } = useSettings();
   const [value, setValue] = useState(settings.rewindIntervalSec);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   return (
     <div className="pl-4 py-2 max-w-2xl flex justify-between items-center">
@@ -23,7 +24,9 @@ function RewindIntervalSetting() {
         <Rewind size={20} />
         <TypographySpan>Rewind interval</TypographySpan>
       </div>
-      <Drawer>
+      <Drawer
+        open={isDrawerOpen}
+        onOpenChange={(state) => setIsDrawerOpen(state)}>
         <DrawerTrigger asChild>
           <Button variant="ghost" className="gap-1">
             {settings.rewindIntervalSec}s
@@ -51,7 +54,11 @@ function RewindIntervalSetting() {
               />
             </div>
             <DrawerFooter>
-              <Button onClick={() => updateRewindInterval(value)}>
+              <Button
+                onClick={async () => {
+                  await updateRewindInterval(value);
+                  setIsDrawerOpen(false);
+                }}>
                 Submit
               </Button>
             </DrawerFooter>

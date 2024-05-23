@@ -5,6 +5,7 @@ import { FavoritePodcastType, PodcastItemType } from "@/@types/podcast";
 export interface globalStatesType {
   isPodcastCollapsibleOpen: boolean;
   user: UserType | null;
+  isUserFetched: boolean;
   subscriptions: null | PodcastItemType[]; //Update type
   favorites: null | FavoritePodcastType[];
   settings: SettingsType;
@@ -22,6 +23,12 @@ export interface onUserLoginType {
     user: UserType;
     settings: SettingsType;
   };
+}
+export interface setUserFetchedType {
+  type: "setUserFetched";
+}
+export interface setOfflineSettingType {
+  type: "setOfflineSetting";
 }
 export interface togglePodcastCollapsibleType {
   type: "togglePodcastCollapsible";
@@ -45,6 +52,8 @@ export interface updateFavoriteType {
 
 export type globalStatesActionType =
   | onUserLoginType
+  | setUserFetchedType
+  | setOfflineSettingType
   | togglePodcastCollapsibleType
   | updateSubscriptionsType
   | updateTrendingType

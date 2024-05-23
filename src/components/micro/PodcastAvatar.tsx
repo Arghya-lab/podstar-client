@@ -13,17 +13,14 @@ function PodcastAvatar({
   isRounded?: boolean;
 }) {
   return (
-    <Link to={`/podcast/${data._id}`} className="min-w-20  max-w-48">
+    <Link to={`/podcast/${data._id}`} className="min-w-16  max-w-48">
       <AspectRatio
         ratio={1 / 1}
         className={cn("bg-muted", isRounded ? "rounded-lg" : "rounded-none")}>
         <Avatar
-          className={cn(
-            "h-full w-full",
-            isRounded ? "rounded-lg" : "rounded-none"
-          )}>
+          className={cn("h-full w-full", isRounded ? "" : "rounded-none")}>
           <AvatarImage src={data.imgUrl} alt={data.name} />
-          <AvatarFallback className={isRounded ? "rounded-lg" : "rounded-none"}>
+          <AvatarFallback className={isRounded ? "" : "rounded-none"}>
             <AudioLines size={36} />
           </AvatarFallback>
         </Avatar>

@@ -1,17 +1,15 @@
 import { ReactNode, createContext, useContext, useReducer } from "react";
 import { globalStatesContextType } from "@/@types/globalStates";
 import reducer from "@/providers/reducers/globalStateReducer";
+import { defaultSettings } from "@/services/localSettings";
 
 const defaultGlobalStatesValue = {
   isPodcastCollapsibleOpen: false,
   user: null,
+  isUserFetched: false,
   subscriptions: null,
   favorites: null,
-  settings: {
-    playbackSpeed: 1.0,
-    rewindIntervalSec: 10,
-    forwardIntervalSec: 10,
-  },
+  settings: defaultSettings,
   trending: null,
 };
 

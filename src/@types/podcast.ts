@@ -89,13 +89,11 @@ export interface PodcastInfoType {
 export interface FavoritePodcastType {
   _id: string;
   podcast: PodcastItemType;
-  title: string;
-  description: string;
-  enclosure: {
-    url: string;
-    type: string;
-  };
-  guid: string;
-  duration: number;
-  pubDate: string;
+  episodeContent: EpisodeType;
+}
+
+export interface localFavoriteType {
+  _id: string;
+  podcastId: string;
+  episodeContent: EpisodeType;
 }

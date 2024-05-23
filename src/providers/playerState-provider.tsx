@@ -9,6 +9,7 @@ import ReactPlayer from "react-player";
 import { PlayerStateType, PlayerStateContextType } from "@/@types/playerState";
 import isMobileDevice from "@/utils/isMobileDevice";
 import playerStateReducer from "@/providers/reducers/playerStateReducer";
+import { useGlobalStates } from "@/providers/globalStates-provider";
 
 const defaultPlayerState: PlayerStateType = {
   podcastId: null,
@@ -24,7 +25,6 @@ const defaultPlayerState: PlayerStateType = {
   duration: 0,
   formattedDuration: "00:00",
   loaded: 0,
-  playbackRate: 1.0,
   buffering: false,
   playerFullScreen: false,
   playingCanceled: true,
@@ -45,8 +45,7 @@ const PlayerStateContext = createContext<PlayerStateContextType>({
 export const usePlayerState = () => useContext(PlayerStateContext);
 
 export function PlayerStateProvider({ children }: { children: ReactNode }) {
-  const skipBackSec = 10;
-  const skipForwardSec = 10;
+  const { settings } = useGlobalStates();
 
   const audioPlayerRef = useRef<ReactPlayer>(null);
   const [state, dispatch] = useReducer(playerStateReducer, defaultPlayerState);
@@ -54,7 +53,7 @@ export function PlayerStateProvider({ children }: { children: ReactNode }) {
   const handleSkipBack = () => {
     if (audioPlayerRef?.current) {
       audioPlayerRef.current.seekTo(
-        state.played * state.duration - skipBackSec
+        state.played * state.duration - settings.rewindIntervalSec
       );
     }
   };
@@ -62,7 +61,7 @@ export function PlayerStateProvider({ children }: { children: ReactNode }) {
   const handleSkipForward = () => {
     if (audioPlayerRef?.current) {
       audioPlayerRef.current.seekTo(
-        state.played * state.duration + skipForwardSec
+        state.played * state.duration + settings.forwardIntervalSec
       );
     }
   };

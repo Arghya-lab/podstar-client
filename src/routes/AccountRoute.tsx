@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import UserInfo from "@/components/micro/UserInfo";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -13,10 +14,10 @@ function AccountRoute() {
           <div className="w-full max-w-md py-8">
             <UserInfo />
             <Button variant="outline" className="w-full mt-16" asChild>
-              <a href="/change-password">Change password</a>
+              <Link to="/change-password">Change password</Link>
             </Button>
             <Button variant="outline" className="w-full mt-8" asChild>
-              <a href={`${config.apiBaseUrl}/auth/logout`}>Logout</a>
+              <Link to={`${config.apiBaseUrl}/auth/logout`}>Logout</Link>
             </Button>
             <Button variant="destructive" className="w-full mt-8">
               Delete Account

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -49,10 +50,10 @@ function LoginComponent({ successRedirect }: { successRedirect: string }) {
       <CardContent>
         <div className="flex justify-center">
           <Button variant="outline" asChild>
-            <a href={`${config.apiBaseUrl}/auth/google`}>
+            <Link to={`${config.apiBaseUrl}/auth/google`}>
               <Google size={18} className="pr-3" />
               Login with Google
-            </a>
+            </Link>
           </Button>
         </div>
         <div className="relative py-4">

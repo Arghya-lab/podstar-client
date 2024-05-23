@@ -2,6 +2,7 @@ import {
   globalStatesActionType,
   globalStatesType,
 } from "@/@types/globalStates";
+import { getLocalSetting } from "@/services/localSettings";
 
 export default function reducer(
   states: globalStatesType,
@@ -13,6 +14,18 @@ export default function reducer(
         ...states,
         user: action.payload.user,
         settings: action.payload.settings,
+      };
+      break;
+    case "setUserFetched":
+      return {
+        ...states,
+        isUserFetched: true,
+      };
+      break;
+    case "setOfflineSetting":
+      return {
+        ...states,
+        settings: getLocalSetting(),
       };
       break;
     case "togglePodcastCollapsible":

@@ -25,7 +25,7 @@ function HomeRoute() {
           )}
         </div>
         <TrendingHomeSection />
-        {user && <UserSubscriptionsHomeSection />}
+        <UserSubscriptionsHomeSection />
       </main>
     </ScrollArea>
   );

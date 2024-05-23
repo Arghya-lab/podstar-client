@@ -80,3 +80,21 @@ export async function getPodcastInfo(id: string) {
     }
   }
 }
+
+export async function getPodcast(id: string) {
+  try {
+    const {
+      data,
+    }: {
+      data: ApiResponseType<PodcastItemType>;
+    } = await axios.get(`${config.apiBaseUrl}/podcast/${id}`);
+
+    if (data.success) {
+      return data.data;
+    }
+  } catch (error) {
+    if (isAxiosError(error)) {
+      console.error(error.message);
+    }
+  }
+}
