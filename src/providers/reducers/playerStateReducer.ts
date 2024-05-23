@@ -48,9 +48,6 @@ export default function playerStateReducer(
         formattedDuration: getFormattedPlayerTime(action.payload),
       };
       break;
-    case "changePlaybackRate":
-      return { ...state, playbackRate: action.payload };
-      break;
     case "setBuffering":
       return { ...state, buffering: true };
       break;
