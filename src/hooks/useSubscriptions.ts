@@ -29,6 +29,10 @@ export default function useSubscriptions() {
               payload: data.data,
             });
           } catch (error) {
+            dispatch({
+              type: "updateSubscriptions",
+              payload: [],
+            });
             if (isAxiosError(error)) {
               console.error(error.message);
             }

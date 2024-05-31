@@ -24,7 +24,7 @@ function EpisodeItem({
   return (
     <div
       style={style}
-      className="pr-4"
+      className="lg:pr-4"
       onClick={() => {
         dispatch({
           type: "setNewEpisode",

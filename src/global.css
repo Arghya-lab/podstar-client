@@ -96,8 +96,9 @@
 }
 
 .monaLisaLoadingAnimation path {
-  stroke: hsl(var(--border));
+  stroke: hsl(var(--ring));
   stroke-width: 0.6px;
+  opacity: 0.7;
   animation: dashArray 4s ease-in-out infinite, dashOffset 4s linear infinite;
 }
 

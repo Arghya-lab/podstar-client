@@ -1,5 +1,5 @@
 import { TypographyH3 } from "@/components/ui/typography";
-import { LayoutGrid } from "lucide-react";
+import { LayoutDashboard } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import useTrending from "@/hooks/useTrending";
@@ -17,7 +17,7 @@ function TrendingHomeSection() {
         <TypographyH3>Trending</TypographyH3>
         <Button variant="outline" size="icon" asChild>
           <Link to="/trending">
-            <LayoutGrid size={28} />
+            <LayoutDashboard size={28} strokeWidth={1.56} />
           </Link>
         </Button>
       </div>

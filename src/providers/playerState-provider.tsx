@@ -32,7 +32,7 @@ const defaultPlayerState: PlayerStateType = {
   timeStamps: [],
 };
 
-const PlayerStateContext = createContext<PlayerStateContextType>({
+export const PlayerStateContext = createContext<PlayerStateContextType>({
   ...defaultPlayerState,
   audioPlayerRef: null,
   handleSkipBack: () => {},

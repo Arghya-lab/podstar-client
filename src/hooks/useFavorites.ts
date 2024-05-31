@@ -28,6 +28,7 @@ export default function useFavorites() {
 
             dispatch({ type: "updateFavorite", payload: data.data });
           } catch (error) {
+            dispatch({ type: "updateFavorite", payload: [] });
             if (isAxiosError(error)) {
               console.error(error.message);
             }

@@ -1,10 +1,10 @@
 import { TypographyH3 } from "@/components/ui/typography";
-import { LayoutGrid } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import useWindowSize from "@/hooks/useWindowSize";
 import useSubscriptions from "@/hooks/useSubscriptions";
 import PodcastAvatar from "@/components/micro/PodcastAvatar";
+import { LayoutDashboard } from "lucide-react";
 
 function UserSubscriptionsHomeSection() {
   const { subscriptions } = useSubscriptions();
@@ -18,7 +18,7 @@ function UserSubscriptionsHomeSection() {
         <TypographyH3>Subscriptions</TypographyH3>
         <Button variant="outline" size="icon" asChild>
           <Link to="/subscriptions">
-            <LayoutGrid size={28} />
+            <LayoutDashboard size={28} strokeWidth={1.56} />
           </Link>
         </Button>
       </div>

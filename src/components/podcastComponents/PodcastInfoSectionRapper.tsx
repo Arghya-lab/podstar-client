@@ -27,9 +27,9 @@ function PodcastInfoSectionRapper({
           dispatch({ type: "togglePodcastCollapsible" });
         }}
         className="space-y-2">
-        <div className="flex items-center justify-between space-x-4 p-4">
+        <div className="flex items-center justify-between space-x-4 p-4 pb-0">
           <h4 className="font-semibold text-lg">
-            {title || "Expand for more data"}
+            {title || "Expand for podcast info"}
           </h4>
           <CollapsibleTrigger asChild>
             <Button variant="ghost" size="sm">

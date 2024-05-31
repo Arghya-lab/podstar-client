@@ -3,7 +3,7 @@ import { Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useGlobalStates } from "@/providers/globalStates-provider";
 import TrendingHomeSection from "@/components/podcastComponents/TrendingHomeSection";
-import UserSubscriptionsHomeSection from "@/components/podcastComponents/UserSubscriptionsHomeSection";
+import UserSubscriptionsHomeSection from "@/components/UserSubscriptionsHomeSection";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 function HomeRoute() {

@@ -10,7 +10,7 @@ import {
 
 function VerifyEmailCard() {
   return (
-    <div className="p-4 w-full">
+    <div className="pb-4 w-full">
       <Card className="w-full flex flex-col sm:flex-row items-center justify-between">
         <CardHeader>
           <CardTitle>Your email is not verified</CardTitle>

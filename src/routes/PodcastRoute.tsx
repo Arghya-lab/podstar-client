@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useMemo, useState } from "react";
 import Fuse from "fuse.js";
 import { LoaderFunction, useLoaderData } from "react-router-dom";
 import { FixedSizeList as List } from "react-window";
@@ -13,6 +13,8 @@ import PodcastInfoSection from "@/components/podcastComponents/PodcastInfoSectio
 import { ScrollArea } from "@/components/ui/scroll-area";
 import EpisodeItem from "@/components/micro/EpisodeItem";
 import { EpisodeType } from "@/@types/podcast";
+import { cn } from "@/lib/utils";
+import { usePlayerState } from "@/providers/playerState-provider";
 
 export const PodcastRouteLoader: LoaderFunction = async ({ params }) => {
   const id = params.id;
@@ -25,7 +27,9 @@ export const PodcastRouteLoader: LoaderFunction = async ({ params }) => {
 
 function PodcastRoute() {
   const { windowWidth } = useWindowSize();
+  const { playingCanceled } = usePlayerState();
   const { isPodcastCollapsibleOpen } = useGlobalStates();
+
   const res = useLoaderData() as {
     data: PodcastInfoType;
     id: string;
@@ -37,72 +41,83 @@ function PodcastRoute() {
   const [filteredEpisodes, setFilteredEpisodes] = useState<EpisodeType[]>(
     res?.data.episodes || []
   );
+  return useMemo(() => {
+    if (!res?.data) return null;
+    const { data, id } = res;
 
-  if (!res?.data) return null;
-  const { data, id } = res;
+    const fuse = new Fuse(data.episodes || [], { keys: ["title"] });
 
-  const fuse = new Fuse(data.episodes || [], { keys: ["title"] });
+    const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
+      const newQuery = e.target.value;
+      setSearchQuery(newQuery);
 
-  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
-    const newQuery = e.target.value;
-    setSearchQuery(newQuery);
+      if (data.episodes && newQuery.length > 2) {
+        const result = fuse.search(newQuery).map((data) => data.item);
 
-    if (data.episodes && newQuery.length > 2) {
-      const result = fuse.search(newQuery).map((data) => data.item);
+        setFilteredEpisodes(result);
+      } else {
+        setFilteredEpisodes(data.episodes || []);
+      }
+    };
 
-      setFilteredEpisodes(result);
-    } else {
-      setFilteredEpisodes(data.episodes || []);
-    }
-  };
-
-  return (
-    <main className="flex flex-1 flex-col lg:flex-row">
-      <ScrollArea className="lg:w-96">
-        <PodcastInfoSectionRapper
-          title={data.podcast.title || data.itunes?.trackName}>
-          <PodcastInfoSection
-            id={data._id}
-            podcast={data.podcast}
-            itunes={data.itunes}
-          />
-        </PodcastInfoSectionRapper>
-      </ScrollArea>
-      {(!isPodcastCollapsibleOpen || windowWidth >= 1024) && (
-        <div className="flex flex-col flex-1">
-          <div className="p-4 pb-0">
-            <Input
-              type="text"
-              value={searchQuery}
-              onChange={handleSearch}
-              placeholder="Search for Episodes..."
+    return (
+      <main className="flex flex-1 flex-col lg:flex-row">
+        <ScrollArea className="lg:w-96">
+          <PodcastInfoSectionRapper
+            title={data.podcast.title || data.itunes?.trackName}>
+            <PodcastInfoSection
+              id={data._id}
+              podcast={data.podcast}
+              itunes={data.itunes}
             />
+          </PodcastInfoSectionRapper>
+        </ScrollArea>
+        {(!isPodcastCollapsibleOpen || windowWidth >= 1024) && (
+          <div className="flex flex-col flex-1">
+            <div className="p-4 pb-0">
+              <Input
+                type="text"
+                value={searchQuery}
+                onChange={handleSearch}
+                placeholder="Search for Episodes..."
+              />
+            </div>
+            <section
+              className={cn("p-4 flex-1 flex flex-col", {
+                "pb-0": !playingCanceled,
+              })}>
+              <AutoSizer>
+                {({ height, width }) => (
+                  <List
+                    height={height}
+                    itemCount={filteredEpisodes.length}
+                    itemSize={104}
+                    width={width}>
+                    {({ index, style }) => (
+                      <EpisodeItem
+                        key={filteredEpisodes[index].guid}
+                        imgUrl={data.podcast.image?.url}
+                        episode={filteredEpisodes[index]}
+                        podcastId={id}
+                        style={style}
+                      />
+                    )}
+                  </List>
+                )}
+              </AutoSizer>
+            </section>
           </div>
-          <section className="p-4 flex-1 flex flex-col">
-            <AutoSizer>
-              {({ height, width }) => (
-                <List
-                  height={height}
-                  itemCount={filteredEpisodes.length}
-                  itemSize={104}
-                  width={width}>
-                  {({ index, style }) => (
-                    <EpisodeItem
-                      key={filteredEpisodes[index].guid}
-                      imgUrl={data.podcast.image?.url}
-                      episode={filteredEpisodes[index]}
-                      podcastId={id}
-                      style={style}
-                    />
-                  )}
-                </List>
-              )}
-            </AutoSizer>
-          </section>
-        </div>
-      )}
-    </main>
-  );
+        )}
+      </main>
+    );
+  }, [
+    playingCanceled,
+    filteredEpisodes,
+    isPodcastCollapsibleOpen,
+    res,
+    searchQuery,
+    windowWidth,
+  ]);
 }
 
 export default PodcastRoute;

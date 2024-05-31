@@ -1,7 +1,7 @@
 import { PlayerActionType, PlayerStateType } from "@/@types/playerState";
 import getFormattedPlayerTime from "@/utils/getFormattedPlayerTime";
-import timeStampParser from "@/utils/timeStampParser";
-import { convert } from "html-to-text";
+// import timeStampParser from "@/utils/timeStampParser";
+// import { convert } from "html-to-text";
 
 export default function playerStateReducer(
   state: PlayerStateType,
@@ -17,9 +17,9 @@ export default function playerStateReducer(
         playing: false,
         muted: false,
         playingCanceled: false,
-        timeStamps: timeStampParser(
-          convert(action.payload.episode.contentEncoded)
-        ),
+        // timeStamps: timeStampParser(
+        //   convert(action.payload.episode.contentEncoded)
+        // ),
         played: 0,
         formattedCurrentTime: "00:00",
         formattedRemainTime: "00:00",
